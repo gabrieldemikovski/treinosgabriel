@@ -1,164 +1,199 @@
 <!DOCTYPE html>
 <html class="dark" lang="pt-BR">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Resultado do Simulado | Elite Performance</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+        rel="stylesheet" />
     <style>
-        body { background-color: #131313; color: #e5e2e1; font-family: 'Manrope', sans-serif; min-height: 100vh; }
-        .glass-card { background: #201f1f; border: 1px solid rgba(204, 242, 0, 0.15); }
-        .nav-active { background: #ccf200 !important; color: #181e00 !important; border-radius: 12px; }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Manrope', sans-serif;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: #201f1f;
+            border: 1px solid rgba(204, 242, 0, 0.15);
+        }
+
+        .nav-active {
+            background: #ccf200 !important;
+            color: #181e00 !important;
+            border-radius: 12px;
+        }
     </style>
+
+    <link rel="manifest" href="manifest.json">
+
+
 </head>
+
 <body class="flex flex-col pb-24">
 
-<header class="w-full bg-[#131313] border-b border-white/10 flex items-center justify-between px-5 h-16 sticky top-0 z-50">
-    <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-[#ccf200]">fitness_center</span>
-        <h1 class="font-bold text-lg text-white">RESULTADO</h1>
-    </div>
-</header>
-
-<main class="flex-1 p-5 max-w-2xl mx-auto w-full">
-    
-    <section class="mb-8 text-center" id="result-hero">
-        <div class="inline-block mb-4">
-            <span id="status-badge" class="font-bold text-xs px-4 py-1 rounded-full tracking-widest bg-[#ccf200] text-[#181e00]">APTO</span>
+    <header
+        class="w-full bg-[#131313] border-b border-white/10 flex items-center justify-between px-5 h-16 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[#ccf200]">fitness_center</span>
+            <h1 class="font-bold text-lg text-white">RESULTADO</h1>
         </div>
-        <div class="glass-card p-6 rounded-xl">
-            <h2 id="status-title" class="text-4xl font-extrabold text-white uppercase tracking-tighter mb-2">APTO</h2>
-            <p id="status-message" class="text-sm text-[#c5c9ac]">Desempenho aprovado. Continue mantendo a consistência.</p>
-        </div>
-    </section>
+    </header>
 
-    <div class="space-y-4 mb-8">
-        <h3 class="font-bold text-white uppercase">Detalhamento</h3>
-        <div id="metrics-container" class="space-y-3">
+    <main class="flex-1 p-5 max-w-2xl mx-auto w-full">
+
+        <section class="mb-8 text-center" id="result-hero">
+            <div class="inline-block mb-4">
+                <span id="status-badge"
+                    class="font-bold text-xs px-4 py-1 rounded-full tracking-widest bg-[#ccf200] text-[#181e00]">APTO</span>
             </div>
-    </div>
+            <div class="glass-card p-6 rounded-xl">
+                <h2 id="status-title" class="text-4xl font-extrabold text-white uppercase tracking-tighter mb-2">APTO
+                </h2>
+                <p id="status-message" class="text-sm text-[#c5c9ac]">Desempenho aprovado. Continue mantendo a
+                    consistência.</p>
+            </div>
+        </section>
 
-    <div class="glass-card p-6 rounded-xl mb-8">
-        <label class="text-[10px] uppercase text-[#c5c9ac] mb-2 block">Observações do Simulado</label>
-        <textarea class="w-full bg-[#0e0e0e] border border-white/10 rounded-lg p-4 text-white outline-none focus:border-[#ccf200]" rows="3" placeholder="Escreva suas considerações..."></textarea>
-    </div>
+        <div class="space-y-4 mb-8">
+            <h3 class="font-bold text-white uppercase">Detalhamento</h3>
+            <div id="metrics-container" class="space-y-3">
+            </div>
+        </div>
 
-   <button onclick="salvarEIrParaHistorico()" class="w-full py-4 bg-[#ccf200] text-[#181e00] font-bold rounded-xl flex items-center justify-center gap-2">
-    <span class="material-symbols-outlined">save</span> SALVAR NO HISTÓRICO
-</button>
-</main>
+        <div class="glass-card p-6 rounded-xl mb-8">
+            <label class="text-[10px] uppercase text-[#c5c9ac] mb-2 block">Observações do Simulado</label>
+            <textarea
+                class="w-full bg-[#0e0e0e] border border-white/10 rounded-lg p-4 text-white outline-none focus:border-[#ccf200]"
+                rows="3" placeholder="Escreva suas considerações..."></textarea>
+        </div>
 
-<nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+        <button onclick="salvarEIrParaHistorico()"
+            class="w-full py-4 bg-[#ccf200] text-[#181e00] font-bold rounded-xl flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined">save</span> SALVAR NO HISTÓRICO
+        </button>
+    </main>
 
-    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="home">home</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
-    </a>
+    <nav id="bottom-nav"
+        class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
 
-    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
-    </a>
+        <a href="index.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+        </a>
 
-    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
-    </a>
+        <a href="treino.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+        </a>
 
-    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="history">history</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
-    </a>
+        <a href="simuladotaf.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+        </a>
 
-    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="person">person</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
-    </a>
+        <a href="historico.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+        </a>
 
-</nav>
+        <a href="perfil.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+        </a>
 
-<script>
-  // 1. Identifica em qual página o usuário está no momento
-  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
-  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
-  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+    </nav>
 
-  // 3. Percorre todos os botões do menu
-  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
-    const linkDoBotao = btn.getAttribute('href');
-    const icone = btn.querySelector('.material-symbols-outlined');
-    
-    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
-    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+    <script>
+        // 1. Identifica em qual página o usuário está no momento
+        const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
 
-    if (paginaAtual === linkDoBotao || isSimuladoArea) {
-      // Aplica o visual ATIVO
-      btn.classList.remove(...classesInativo);
-      btn.classList.add(...classesAtivo);
-      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
-    } else {
-      // Garante o visual INATIVO
-      btn.classList.remove(...classesAtivo);
-      btn.classList.add(...classesInativo);
-      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
-    }
-  });
-</script>
+        // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+        const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+        const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
 
-<script>
- 
+        // 3. Percorre todos os botões do menu
+        document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+            const linkDoBotao = btn.getAttribute('href');
+            const icone = btn.querySelector('.material-symbols-outlined');
 
-    const logs = JSON.parse(localStorage.getItem('fitflow_history')) || [];
-    const lastId = localStorage.getItem('fitflow_last_result_id');
-    const atual = logs.find(l => l.id == parseInt(lastId));
-    
-    // Filtra simulados anteriores do mesmo tipo/nome para o comparativo
-    const anteriores = logs.filter(l => l.nome === atual.nome && l.id < atual.id).slice(-3).reverse();
+            // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+            const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
 
-    function renderResults() {
-        if (!atual) return;
-
-        // 1. Status Principal
-        const statusEl = document.getElementById('status-badge');
-        const titleEl = document.getElementById('status-title');
-        const isApto = atual.status === "APTO";
-        
-        statusEl.className = `font-bold text-xs px-4 py-1 rounded-full tracking-widest ${isApto ? 'bg-[#ccf200] text-[#181e00]' : 'bg-red-600 text-white'}`;
-        statusEl.innerText = atual.status;
-        titleEl.innerText = atual.status;
-
-        // 2. Renderizar métricas e Comparativo
-        const container = document.getElementById('metrics-container');
-        container.innerHTML = atual.detalhes.map(m => {
-            const anterior = anteriores[0]?.detalhes.find(d => d.nome === m.nome);
-            let feedback = "";
-            
-            // Comparativo com o último simulado
-            if (anterior) {
-                const diff = m.atingido - anterior.atingido;
-                if (diff > 0) feedback = `<span class="text-[#ccf200] text-[10px] block">+${diff} em relação ao último</span>`;
-                else if (diff < 0) feedback = `<span class="text-red-500 text-[10px] block">${diff} em relação ao último</span>`;
+            if (paginaAtual === linkDoBotao || isSimuladoArea) {
+                // Aplica o visual ATIVO
+                btn.classList.remove(...classesInativo);
+                btn.classList.add(...classesAtivo);
+                icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+            } else {
+                // Garante o visual INATIVO
+                btn.classList.remove(...classesAtivo);
+                btn.classList.add(...classesInativo);
+                icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
             }
+        });
+    </script>
 
-            // Exibição dos PONTOS GANHOS (se for modo edital)
-            let exibicaoPontos = "";
-            if (atual.modo === 'edital' || m.modo === 'edital' || m.pontosGanhos !== undefined) {
-                 exibicaoPontos = `<div class="text-[12px] text-[#181e00] font-black uppercase tracking-wider mt-1 inline-block px-2 py-0.5 rounded bg-[#ccf200] shadow-[0_0_10px_rgba(204,242,0,0.2)]">${m.pontosGanhos || 0} Pts</div>`;
-            }
+    <script>
 
-            // Oculta o "/ 0" feio e mostra apenas o que foi feito ou a métrica
-            let exibicaoDireita = `<div class="text-lg font-bold text-white">${m.atingido} <span class="text-[10px] opacity-50 text-on-surface-variant tracking-widest uppercase">${m.metrica || ''}</span></div>`;
-            
-            // Se for mínimo exigido e tiver valor maior que 0, aí sim mostra o / X
-            if (atual.modo !== 'edital' && m.minimo > 0) {
-                 exibicaoDireita = `<div class="text-lg font-bold text-white">${m.atingido} <span class="text-[12px] opacity-50 text-on-surface-variant">/ ${m.minimo}</span></div>`;
-            }
 
-            return `
+        const logs = JSON.parse(localStorage.getItem('fitflow_history')) || [];
+        const lastId = localStorage.getItem('fitflow_last_result_id');
+        const atual = logs.find(l => l.id == parseInt(lastId));
+
+        // Filtra simulados anteriores do mesmo tipo/nome para o comparativo
+        const anteriores = logs.filter(l => l.nome === atual.nome && l.id < atual.id).slice(-3).reverse();
+
+        function renderResults() {
+            if (!atual) return;
+
+            // 1. Status Principal
+            const statusEl = document.getElementById('status-badge');
+            const titleEl = document.getElementById('status-title');
+            const isApto = atual.status === "APTO";
+
+            statusEl.className = `font-bold text-xs px-4 py-1 rounded-full tracking-widest ${isApto ? 'bg-[#ccf200] text-[#181e00]' : 'bg-red-600 text-white'}`;
+            statusEl.innerText = atual.status;
+            titleEl.innerText = atual.status;
+
+            // 2. Renderizar métricas e Comparativo
+            const container = document.getElementById('metrics-container');
+            container.innerHTML = atual.detalhes.map(m => {
+                const anterior = anteriores[0]?.detalhes.find(d => d.nome === m.nome);
+                let feedback = "";
+
+                // Comparativo com o último simulado
+                if (anterior) {
+                    const diff = m.atingido - anterior.atingido;
+                    if (diff > 0) feedback = `<span class="text-[#ccf200] text-[10px] block">+${diff} em relação ao último</span>`;
+                    else if (diff < 0) feedback = `<span class="text-red-500 text-[10px] block">${diff} em relação ao último</span>`;
+                }
+
+                // Exibição dos PONTOS GANHOS (se for modo edital)
+                let exibicaoPontos = "";
+                if (atual.modo === 'edital' || m.modo === 'edital' || m.pontosGanhos !== undefined) {
+                    exibicaoPontos = `<div class="text-[12px] text-[#181e00] font-black uppercase tracking-wider mt-1 inline-block px-2 py-0.5 rounded bg-[#ccf200] shadow-[0_0_10px_rgba(204,242,0,0.2)]">${m.pontosGanhos || 0} Pts</div>`;
+                }
+
+                // Oculta o "/ 0" feio e mostra apenas o que foi feito ou a métrica
+                let exibicaoDireita = `<div class="text-lg font-bold text-white">${m.atingido} <span class="text-[10px] opacity-50 text-on-surface-variant tracking-widest uppercase">${m.metrica || ''}</span></div>`;
+
+                // Se for mínimo exigido e tiver valor maior que 0, aí sim mostra o / X
+                if (atual.modo !== 'edital' && m.minimo > 0) {
+                    exibicaoDireita = `<div class="text-lg font-bold text-white">${m.atingido} <span class="text-[12px] opacity-50 text-on-surface-variant">/ ${m.minimo}</span></div>`;
+                }
+
+                return `
             <div class="p-4 bg-[#1c1b1b] border border-white/10 rounded-lg flex justify-between items-center">
                 <div>
                     <div class="font-bold text-white uppercase">${m.nome}</div>
@@ -169,24 +204,25 @@
                     ${exibicaoDireita}
                 </div>
             </div>`;
-        }).join('');
-    }
-    
-    renderResults();
-
-    function salvarEIrParaHistorico() {
-        const obsText = document.querySelector('textarea').value;
-        const logsData = JSON.parse(localStorage.getItem('fitflow_history')) || [];
-        const index = logsData.findIndex(l => l.id == parseInt(lastId));
-        
-        if (index !== -1) {
-            logsData[index].observacoes = obsText;
-            localStorage.setItem('fitflow_history', JSON.stringify(logsData));
+            }).join('');
         }
-        window.location.href = 'historico.html';
-    }
-</script>
+
+        renderResults();
+
+        function salvarEIrParaHistorico() {
+            const obsText = document.querySelector('textarea').value;
+            const logsData = JSON.parse(localStorage.getItem('fitflow_history')) || [];
+            const index = logsData.findIndex(l => l.id == parseInt(lastId));
+
+            if (index !== -1) {
+                logsData[index].observacoes = obsText;
+                localStorage.setItem('fitflow_history', JSON.stringify(logsData));
+            }
+            window.location.href = 'historico.html';
+        }
+    </script>
 
 
 </body>
+
 </html>

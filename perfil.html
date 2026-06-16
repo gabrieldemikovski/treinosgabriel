@@ -131,6 +131,10 @@
             min-height: max(884px, 100dvh);
         }
     </style>
+
+    <link rel="manifest" href="manifest.json">
+
+
 </head>
 
 <body class="bg-background text-on-background font-body-md overflow-x-hidden pb-24">
@@ -259,14 +263,17 @@
             </div>
         </section>
         <!-- Weight Evolution Chart -->
-        
-<section class="glass-card border border-white/10 rounded-xl p-5 relative overflow-hidden">
+
+        <section class="glass-card border border-white/10 rounded-xl p-5 relative overflow-hidden">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="font-label-caps text-label-caps text-white">Evolução do Peso</h3>
             </div>
-            
-            <div id="chart-tooltip" class="absolute hidden flex-col items-center pointer-events-none z-20 transition-all duration-200" style="left: 0; top: 0;">
-                <div class="bg-surface-container-high border border-primary-fixed/30 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-lg flex flex-col items-center">
+
+            <div id="chart-tooltip"
+                class="absolute hidden flex-col items-center pointer-events-none z-20 transition-all duration-200"
+                style="left: 0; top: 0;">
+                <div
+                    class="bg-surface-container-high border border-primary-fixed/30 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-lg flex flex-col items-center">
                     <span id="tooltip-date" class="text-on-surface-variant font-label-caps text-[8px]"></span>
                     <span id="tooltip-value" class="text-primary-fixed text-xs"></span>
                 </div>
@@ -274,15 +281,18 @@
             </div>
 
             <div class="relative h-48 w-full mt-4 flex" id="chart-container">
-                <div id="eixo-y-grafico" class="flex flex-col justify-between h-[130px] pr-2 text-[10px] font-label-caps text-on-surface-variant z-10 bg-[#131313]/50">
-                    </div>
-
-                <svg id="svg-grafico" class="w-full h-[150px] overflow-visible" viewbox="0 0 350 150" preserveAspectRatio="none">
-                    </svg>
-            </div>
-            
-            <div id="eixo-x-grafico" class="flex justify-between mt-2 font-label-caps text-[10px] text-on-surface-variant pl-8 pr-1">
+                <div id="eixo-y-grafico"
+                    class="flex flex-col justify-between h-[130px] pr-2 text-[10px] font-label-caps text-on-surface-variant z-10 bg-[#131313]/50">
                 </div>
+
+                <svg id="svg-grafico" class="w-full h-[150px] overflow-visible" viewbox="0 0 350 150"
+                    preserveAspectRatio="none">
+                </svg>
+            </div>
+
+            <div id="eixo-x-grafico"
+                class="flex justify-between mt-2 font-label-caps text-[10px] text-on-surface-variant pl-8 pr-1">
+            </div>
         </section>
 
 
@@ -290,7 +300,8 @@
 
 
         <!-- Tips / Encouragement -->
-       <section class="bg-primary-container text-on-primary-fixed p-6 rounded-2xl relative overflow-hidden shadow-[0_0_30px_rgba(195,244,0,0.1)]">
+        <section
+            class="bg-primary-container text-on-primary-fixed p-6 rounded-2xl relative overflow-hidden shadow-[0_0_30px_rgba(195,244,0,0.1)]">
             <div class="relative z-10 flex items-center gap-4">
                 <div class="bg-black/10 p-3 rounded-full flex items-center justify-center">
                     <span id="icone-meta" class="material-symbols-outlined text-3xl">bolt</span>
@@ -317,34 +328,35 @@
         </section>
 
 
-      <!-- Backup provisorio de teste -->
-    
-<section class="space-y-4 px-container-padding-mobile mt-8">
-    <h3 class="font-headline-md text-white italic">CONFIGURAÇÕES DE DADOS</h3>
-    
-    <div class="glass-card p-6 rounded-xl border border-white/10 space-y-4">
-        <div>
-            <h4 class="text-white font-bold">Backup e Sincronização</h4>
-            <p class="text-[12px] text-on-surface-variant">Mantenha seus treinos salvos. Exporte do PC e importe no seu celular.</p>
-        </div>
-        
-        <div class="flex gap-3">
-            <button onclick="baixarBackup()" 
-                class="flex-1 bg-primary-fixed text-black py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
-                BAIXAR BACKUP
-            </button>
-            
-            <button onclick="document.getElementById('file-input').click()" 
-                class="flex-1 bg-secondary-fixed-dim/10 text-secondary-fixed-dim border border-secondary-fixed-dim/20 py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
-                CARREGAR ARQUIVO
-            </button>
-            
-            <input type="file" id="file-input" class="hidden" accept=".json" onchange="carregarBackup(event)">
-        </div>
-    </div>
-</section>
+        <!-- Backup provisorio de teste -->
 
-     <!-- Fim do Backup Provisório -->
+        <section class="space-y-4 px-container-padding-mobile mt-8">
+            <h3 class="font-headline-md text-white italic">CONFIGURAÇÕES DE DADOS</h3>
+
+            <div class="glass-card p-6 rounded-xl border border-white/10 space-y-4">
+                <div>
+                    <h4 class="text-white font-bold">Backup e Sincronização</h4>
+                    <p class="text-[12px] text-on-surface-variant">Mantenha seus treinos salvos. Exporte do PC e importe
+                        no seu celular.</p>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="baixarBackup()"
+                        class="flex-1 bg-primary-fixed text-black py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
+                        BAIXAR BACKUP
+                    </button>
+
+                    <button onclick="document.getElementById('file-input').click()"
+                        class="flex-1 bg-secondary-fixed-dim/10 text-secondary-fixed-dim border border-secondary-fixed-dim/20 py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
+                        CARREGAR ARQUIVO
+                    </button>
+
+                    <input type="file" id="file-input" class="hidden" accept=".json" onchange="carregarBackup(event)">
+                </div>
+            </div>
+        </section>
+
+        <!-- Fim do Backup Provisório -->
 
     </main>
     <!-- Modal Editar Medidas (Hidden by default) -->
@@ -385,64 +397,70 @@
         </div>
     </div>
     <!-- BottomNavBar -->
- <nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+    <nav id="bottom-nav"
+        class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
 
-    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="home">home</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
-    </a>
+        <a href="index.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+        </a>
 
-    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
-    </a>
+        <a href="treino.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+        </a>
 
-    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
-    </a>
+        <a href="simuladotaf.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+        </a>
 
-    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="history">history</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
-    </a>
+        <a href="historico.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+        </a>
 
-    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="person">person</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
-    </a>
+        <a href="perfil.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+        </a>
 
-</nav>
+    </nav>
 
-<script>
-  // 1. Identifica em qual página o usuário está no momento
-  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
-  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
-  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+    <script>
+        // 1. Identifica em qual página o usuário está no momento
+        const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
 
-  // 3. Percorre todos os botões do menu
-  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
-    const linkDoBotao = btn.getAttribute('href');
-    const icone = btn.querySelector('.material-symbols-outlined');
-    
-    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
-    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+        // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+        const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+        const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
 
-    if (paginaAtual === linkDoBotao || isSimuladoArea) {
-      // Aplica o visual ATIVO
-      btn.classList.remove(...classesInativo);
-      btn.classList.add(...classesAtivo);
-      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
-    } else {
-      // Garante o visual INATIVO
-      btn.classList.remove(...classesAtivo);
-      btn.classList.add(...classesInativo);
-      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
-    }
-  });
-</script>
+        // 3. Percorre todos os botões do menu
+        document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+            const linkDoBotao = btn.getAttribute('href');
+            const icone = btn.querySelector('.material-symbols-outlined');
+
+            // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+            const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+            if (paginaAtual === linkDoBotao || isSimuladoArea) {
+                // Aplica o visual ATIVO
+                btn.classList.remove(...classesInativo);
+                btn.classList.add(...classesAtivo);
+                icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+            } else {
+                // Garante o visual INATIVO
+                btn.classList.remove(...classesAtivo);
+                btn.classList.add(...classesInativo);
+                icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+            }
+        });
+    </script>
 
 
     <script>
@@ -519,7 +537,7 @@
             if (nomeDigitado) localStorage.setItem('nomeUsuario', nomeDigitado);
         }
 
-      // 4. Salva quando digita direto na tela
+        // 4. Salva quando digita direto na tela
         function salvarMedidas() {
             const altura = document.getElementById('input-altura').value;
             const peso = document.getElementById('input-peso').value;
@@ -535,7 +553,7 @@
             document.getElementById('modal-meta').value = meta;
 
             calcularProgresso();
-            
+
             // ATUALIZA O GRÁFICO DINÂMICO AQUI
             if (peso) registrarPesoHistorico(peso);
         }
@@ -556,14 +574,14 @@
             document.getElementById('input-meta').value = meta;
 
             calcularProgresso();
-            
+
             // ATUALIZA O GRÁFICO DINÂMICO AQUI
             if (peso) registrarPesoHistorico(peso);
-            
+
             toggleModal();
         }
 
-       // 6. Atualiza o peso na seção "Peso do Dia"
+        // 6. Atualiza o peso na seção "Peso do Dia"
         function atualizarPeso() {
             const novoPeso = document.getElementById('peso-dia').value;
             if (!novoPeso) return;
@@ -575,16 +593,16 @@
 
             // Recalcula o IMC e Variação
             calcularProgresso();
-            
+
             // ENVIA O DADO PARA O GRÁFICO DINÂMICO AQUI:
             registrarPesoHistorico(novoPeso);
-            
+
             // Limpa o input
-            document.getElementById('peso-dia').value = ''; 
+            document.getElementById('peso-dia').value = '';
         }
 
         // 7. Calcula IMC Dinâmico e Variação de Peso Real
-      // 7. Calcula IMC Dinâmico, Variação e Card de Meta
+        // 7. Calcula IMC Dinâmico, Variação e Card de Meta
         function calcularProgresso() {
             const peso = parseFloat(localStorage.getItem('usuarioPeso')) || 0;
             const altura = parseFloat(localStorage.getItem('usuarioAltura')) || 1.96;
@@ -636,13 +654,13 @@
                 } else {
                     tituloMeta.innerText = "Defina uma Meta";
                     textoMeta.innerText = "Adicione um 'Peso Meta' nas configurações para acompanhar seu alvo.";
-                    iconeMeta.innerText = "flag"; 
+                    iconeMeta.innerText = "flag";
                 }
 
             } else {
                 document.getElementById('imc-display').innerText = '--';
                 document.getElementById('var-display').innerText = '--';
-                
+
                 document.getElementById('titulo-meta').innerText = "Vamos começar?";
                 document.getElementById('texto-meta').innerText = "Insira o seu peso atual e sua meta para ativar o rastreamento.";
                 document.getElementById('icone-meta').innerText = "start";
@@ -662,16 +680,16 @@
             // Preenche os dados
             tooltipDate.innerText = dateLabel;
             tooltipValue.innerText = weightValue;
-            
+
             // Calcula a posição do mouse/dedo relativa ao gráfico
             const rect = chartContainer.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
 
             // Posiciona o tooltip um pouco acima do ponto
-            tooltip.style.left = `${x - 30}px`; 
+            tooltip.style.left = `${x - 30}px`;
             tooltip.style.top = `${y - 45}px`;
-            
+
             // Mostra o elemento
             tooltip.classList.remove('hidden');
             tooltip.classList.add('flex');
@@ -687,22 +705,22 @@
 
         // Grava o peso no histórico com a data atual
         function registrarPesoHistorico(peso) {
-            if(!peso) return;
+            if (!peso) return;
             let historico = JSON.parse(localStorage.getItem('pesoHistorico')) || [];
-            
+
             // Pega a data de hoje (Ex: "11 Jun")
-            const dataHoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.','');
-            
+            const dataHoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.', '');
+
             // Se já se pesou hoje, só atualiza o valor. Se não, adiciona na lista.
             const indexHoje = historico.findIndex(item => item.data === dataHoje);
-            if(indexHoje !== -1) {
+            if (indexHoje !== -1) {
                 historico[indexHoje].peso = parseFloat(peso);
             } else {
                 historico.push({ data: dataHoje, peso: parseFloat(peso) });
                 // Mantém apenas os últimos 5 registros para o gráfico não embolar
-                if(historico.length > 5) historico.shift(); 
+                if (historico.length > 5) historico.shift();
             }
-            
+
             localStorage.setItem('pesoHistorico', JSON.stringify(historico));
             desenharGrafico();
         }
@@ -728,13 +746,13 @@
             // Desenha as medidas no canto esquerdo
             eixoY.innerHTML = `
                 <span>${maxPeso} kg</span>
-                <span>${((maxPeso + minPeso)/2).toFixed(1)} kg</span>
+                <span>${((maxPeso + minPeso) / 2).toFixed(1)} kg</span>
                 <span>${minPeso} kg</span>
             `;
 
             const w = 350; // Largura do SVG
             const pX = historico.length === 1 ? 0 : w / (historico.length - 1); // Distância entre os pontos
-            
+
             let pathD = `M0,150 `; // Começa lá embaixo para o preenchimento azul
             let lineD = ""; // Caminho da linha neon
             let circlesHTML = "";
@@ -742,19 +760,19 @@
 
             historico.forEach((ponto, i) => {
                 // Se só tem 1 dado, põe no meio. Se tem mais, divide o espaço.
-                const x = historico.length === 1 ? w/2 : i * pX; 
+                const x = historico.length === 1 ? w / 2 : i * pX;
                 // Normaliza o Y (converte o peso para a altura da tela)
-                const normalizedY = (ponto.peso - minPeso) / range; 
-                const y = 130 - (normalizedY * 110); 
+                const normalizedY = (ponto.peso - minPeso) / range;
+                const y = 130 - (normalizedY * 110);
 
                 // Lógica para curvar as linhas
-                if(i === 0) {
+                if (i === 0) {
                     pathD += `L${x},${y} `;
                     lineD += `M${x},${y} `;
                 } else {
-                    const prevX = (i-1)*pX;
-                    const prevY = 130 - (((historico[i-1].peso - minPeso) / range) * 110);
-                    const cpX1 = prevX + (x - prevX)/2; // Ponto de controle para curvar suavemente
+                    const prevX = (i - 1) * pX;
+                    const prevY = 130 - (((historico[i - 1].peso - minPeso) / range) * 110);
+                    const cpX1 = prevX + (x - prevX) / 2; // Ponto de controle para curvar suavemente
                     pathD += `C${cpX1},${prevY} ${cpX1},${y} ${x},${y} `;
                     lineD += `C${cpX1},${prevY} ${cpX1},${y} ${x},${y} `;
                 }
@@ -771,7 +789,7 @@
                 labelsXHTML += `<span class="${isLast ? 'text-primary-fixed' : ''}">${ponto.data}</span>`;
             });
 
-            pathD += `L${historico.length === 1 ? w/2 : w},150 Z`; // Fecha o preenchimento
+            pathD += `L${historico.length === 1 ? w / 2 : w},150 Z`; // Fecha o preenchimento
 
             svg.innerHTML = `
                 <defs>
@@ -796,56 +814,56 @@
     </script>
 
 
-<script>
-    // 1. Gera o arquivo .json com seus dados atuais
-   function baixarBackup() {
-    // Cria um objeto vazio
-    const backupCompleto = {};
+    <script>
+        // 1. Gera o arquivo .json com seus dados atuais
+        function baixarBackup() {
+            // Cria um objeto vazio
+            const backupCompleto = {};
 
-    // Percorre todas as chaves salvas no localStorage do seu navegador
-    for (let i = 0; i < localStorage.length; i++) {
-        const chave = localStorage.key(i);
-        backupCompleto[chave] = localStorage.getItem(chave);
-    }
-    
-    // Converte para JSON e baixa
-    const blob = new Blob([JSON.stringify(backupCompleto)], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'fitflow_backup_completo.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-    // 2. Lê o arquivo e atualiza o celular
-    function carregarBackup(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+            // Percorre todas as chaves salvas no localStorage do seu navegador
+            for (let i = 0; i < localStorage.length; i++) {
+                const chave = localStorage.key(i);
+                backupCompleto[chave] = localStorage.getItem(chave);
+            }
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            const backup = JSON.parse(e.target.result);
-            
-            // Limpa o localStorage atual do celular para evitar conflitos
-            localStorage.clear();
-            
-            // Grava tudo o que veio no arquivo
-            Object.keys(backup).forEach(chave => {
-                localStorage.setItem(chave, backup[chave]);
-            });
-            
-            alert("Backup completo carregado! Seus dados pessoais e treinos foram sincronizados.");
-            window.location.reload();
-        } catch (err) {
-            alert("Erro ao ler o arquivo de backup.");
+            // Converte para JSON e baixa
+            const blob = new Blob([JSON.stringify(backupCompleto)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'fitflow_backup_completo.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
-    };
-    reader.readAsText(file);
-}
-</script>
+        // 2. Lê o arquivo e atualiza o celular
+        function carregarBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const backup = JSON.parse(e.target.result);
+
+                    // Limpa o localStorage atual do celular para evitar conflitos
+                    localStorage.clear();
+
+                    // Grava tudo o que veio no arquivo
+                    Object.keys(backup).forEach(chave => {
+                        localStorage.setItem(chave, backup[chave]);
+                    });
+
+                    alert("Backup completo carregado! Seus dados pessoais e treinos foram sincronizados.");
+                    window.location.reload();
+                } catch (err) {
+                    alert("Erro ao ler o arquivo de backup.");
+                }
+            };
+            reader.readAsText(file);
+        }
+    </script>
 
 
 

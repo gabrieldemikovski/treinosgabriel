@@ -136,6 +136,9 @@
             min-height: max(884px, 100dvh);
         }
     </style>
+
+    <link rel="manifest" href="manifest.json">
+
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen pb-40">
@@ -410,67 +413,73 @@
         </div>
     </main>
 
-    
 
 
-<nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
 
-    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="home">home</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
-    </a>
+    <nav id="bottom-nav"
+        class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
 
-    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
-    </a>
+        <a href="index.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+        </a>
 
-    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
-    </a>
+        <a href="treino.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+        </a>
 
-    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="history">history</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
-    </a>
+        <a href="simuladotaf.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+        </a>
 
-    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="person">person</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
-    </a>
+        <a href="historico.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+        </a>
 
-</nav>
+        <a href="perfil.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+        </a>
 
-<script>
-  // 1. Identifica em qual página o usuário está no momento
-  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
-  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
-  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+    </nav>
 
-  // 3. Percorre todos os botões do menu
-  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
-    const linkDoBotao = btn.getAttribute('href');
-    const icone = btn.querySelector('.material-symbols-outlined');
-    
-    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
-    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+    <script>
+        // 1. Identifica em qual página o usuário está no momento
+        const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
 
-    if (paginaAtual === linkDoBotao || isSimuladoArea) {
-      // Aplica o visual ATIVO
-      btn.classList.remove(...classesInativo);
-      btn.classList.add(...classesAtivo);
-      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
-    } else {
-      // Garante o visual INATIVO
-      btn.classList.remove(...classesAtivo);
-      btn.classList.add(...classesInativo);
-      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
-    }
-  });
-</script>
+        // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+        const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+        const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+        // 3. Percorre todos os botões do menu
+        document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+            const linkDoBotao = btn.getAttribute('href');
+            const icone = btn.querySelector('.material-symbols-outlined');
+
+            // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+            const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+            if (paginaAtual === linkDoBotao || isSimuladoArea) {
+                // Aplica o visual ATIVO
+                btn.classList.remove(...classesInativo);
+                btn.classList.add(...classesAtivo);
+                icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+            } else {
+                // Garante o visual INATIVO
+                btn.classList.remove(...classesAtivo);
+                btn.classList.add(...classesInativo);
+                icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+            }
+        });
+    </script>
 
 
     <script>

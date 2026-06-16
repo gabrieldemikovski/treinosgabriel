@@ -133,6 +133,10 @@
       min-height: max(884px, 100dvh);
     }
   </style>
+
+
+  <link rel="manifest" href="manifest.json">
+
 </head>
 
 <body class="font-body-md text-on-surface">
@@ -258,35 +262,35 @@
 
   <script>
 
-  
+
     document.addEventListener('DOMContentLoaded', carregarHistoricoUnificado);
 
     function carregarHistoricoUnificado() {
-        const container = document.getElementById('container-historico');
-        const contador = document.getElementById('contador-historico');
-        
-        // 1. LÊ AS DUAS GAVETAS DE DADOS
-        const simulados = JSON.parse(localStorage.getItem('fitflow_history')) || [];
-        const treinos = JSON.parse(localStorage.getItem('historicoTreinos')) || [];
-        
-        // 2. JUNTA TUDO E ORDENA DO MAIS NOVO PARA O MAIS VELHO
-        let logs = [...simulados, ...treinos];
-        
-        logs.sort((a, b) => {
-            // Usa o ID (que é um timestamp Date.now) se tiver, senão converte a data antiga
-            const tempoA = a.id ? a.id : new Date(a.data).getTime();
-            const tempoB = b.id ? b.id : new Date(b.data).getTime();
-            return tempoB - tempoA; 
-        });
+      const container = document.getElementById('container-historico');
+      const contador = document.getElementById('contador-historico');
 
-        // 3. ATUALIZA O CONTADOR
-        if (contador) {
-            contador.innerText = `${logs.length} REGISTRO${logs.length !== 1 ? 'S' : ''}`;
-        }
+      // 1. LÊ AS DUAS GAVETAS DE DADOS
+      const simulados = JSON.parse(localStorage.getItem('fitflow_history')) || [];
+      const treinos = JSON.parse(localStorage.getItem('historicoTreinos')) || [];
 
-        // Se estiver vazio, mostra a mensagem
-        if (logs.length === 0) {
-            container.innerHTML = `
+      // 2. JUNTA TUDO E ORDENA DO MAIS NOVO PARA O MAIS VELHO
+      let logs = [...simulados, ...treinos];
+
+      logs.sort((a, b) => {
+        // Usa o ID (que é um timestamp Date.now) se tiver, senão converte a data antiga
+        const tempoA = a.id ? a.id : new Date(a.data).getTime();
+        const tempoB = b.id ? b.id : new Date(b.data).getTime();
+        return tempoB - tempoA;
+      });
+
+      // 3. ATUALIZA O CONTADOR
+      if (contador) {
+        contador.innerText = `${logs.length} REGISTRO${logs.length !== 1 ? 'S' : ''}`;
+      }
+
+      // Se estiver vazio, mostra a mensagem
+      if (logs.length === 0) {
+        container.innerHTML = `
                 <div class="glass-card p-10 rounded-2xl text-center border border-white/5 flex flex-col items-center gap-4">
                     <div class="w-16 h-16 bg-[#1c1b1b] rounded-full flex items-center justify-center mb-2">
                         <span class="material-symbols-outlined text-[#c4c9ac] text-3xl">history</span>
@@ -294,16 +298,16 @@
                     <h3 class="text-white font-bold text-lg italic uppercase">Nenhuma atividade</h3>
                     <p class="text-sm text-on-surface-variant">Os treinos e simulados que você concluir aparecerão registrados aqui.</p>
                 </div>`;
-            return;
-        }
+        return;
+      }
 
-        // 4. RENDERIZA OS CARDS (Diferenciando Treino de Simulado)
-        container.innerHTML = logs.map(item => {
-            const isSimulado = item.tipo === 'Simulado TAF';
+      // 4. RENDERIZA OS CARDS (Diferenciando Treino de Simulado)
+      container.innerHTML = logs.map(item => {
+        const isSimulado = item.tipo === 'Simulado TAF';
 
-            // === SE FOR UM TREINO ===
-            if (!isSimulado) {
-                return `
+        // === SE FOR UM TREINO ===
+        if (!isSimulado) {
+          return `
                 <div class="glass-card p-4 rounded-xl border border-white/5 hover:border-[#00dbe9]/30 transition-all cursor-pointer">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-4">
@@ -321,10 +325,10 @@
                         </div>
                     </div>
                 </div>`;
-            }
+        }
 
-            // === SE FOR UM SIMULADO ===
-            return `
+        // === SE FOR UM SIMULADO ===
+        return `
             <div class="glass-card p-4 rounded-xl border border-white/5 hover:border-[#ccf200]/30 transition-all cursor-pointer" onclick="toggleDetalhes(this)">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-4">
@@ -344,32 +348,32 @@
                 
                 <div class="detalhes-container hidden mt-4 pt-4 border-t border-white/5 space-y-3">
                     ${item.detalhes ? item.detalhes.map(d => {
-                        let exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[9px] text-on-surface-variant uppercase tracking-widest">${d.metrica || ''}</span></span>`;
-                        
-                        if (item.modo === 'edital' || d.pontosGanhos !== undefined) {
-                            exibicaoDireita += `<span class="text-[#ccf200] font-bold text-[10px] ml-2 block text-right">${d.pontosGanhos || 0} pts</span>`;
-                        } else if (d.minimo > 0) {
-                            exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[10px] text-on-surface-variant opacity-50">/ ${d.minimo}</span></span>`;
-                        }
+          let exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[9px] text-on-surface-variant uppercase tracking-widest">${d.metrica || ''}</span></span>`;
 
-                        return `
+          if (item.modo === 'edital' || d.pontosGanhos !== undefined) {
+            exibicaoDireita += `<span class="text-[#ccf200] font-bold text-[10px] ml-2 block text-right">${d.pontosGanhos || 0} pts</span>`;
+          } else if (d.minimo > 0) {
+            exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[10px] text-on-surface-variant opacity-50">/ ${d.minimo}</span></span>`;
+          }
+
+          return `
                         <div class="flex justify-between items-center text-xs text-on-surface-variant">
                             <span class="uppercase font-bold">${d.nome}</span>
                             <div class="text-right">${exibicaoDireita}</div>
                         </div>
                         `;
-                    }).join('') : '<p class="text-xs italic">Sem detalhes.</p>'}
+        }).join('') : '<p class="text-xs italic">Sem detalhes.</p>'}
                 </div>
             </div>
             `;
-        }).join('');
+      }).join('');
     }
 
     function toggleDetalhes(element) {
-        const detalhes = element.querySelector('.detalhes-container');
-        if (detalhes) detalhes.classList.toggle('hidden');
+      const detalhes = element.querySelector('.detalhes-container');
+      if (detalhes) detalhes.classList.toggle('hidden');
     }
-</script>
+  </script>
 </body>
 
 </html>

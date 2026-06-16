@@ -13,19 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-<!--referencia para app instalar manifest-->
+    <!--referencia para app instalar manifest-->
 
 
-<link rel="manifest" href="manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!--fim da referencia-->
+    <!--fim da referencia-->
 
 
     <script id="tailwind-config">
-        
+
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -154,7 +154,7 @@
     </style>
 
 
-
+    <link rel="manifest" href="manifest.json">
 
 </head>
 
@@ -184,166 +184,187 @@
     </header>
 
     <main class="pt-24 px-container-padding-mobile space-y-stack-gap-lg">
-    
-        
-    <section class="space-y-4">
-    <div class="glass-card rounded-xl p-4">
-        <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">ATIVIDADE SEMANAL</h3>
-        
-        <div class="grid grid-cols-7 gap-1 text-center" id="container-semanal">
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-0" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">D</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-1" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-2" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">T</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-3" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-4" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-5" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
-            </div>
-            <div class="flex flex-col items-center gap-2">
-                <div id="circle-6" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
-                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
-            </div>
-        </div>
-    </div>
-</section>
 
-    <section class="space-y-4" id="secao-rotina">
-        <div class="flex justify-between items-center">
-            <h3 class="font-headline-md text-headline-md text-white italic">TREINO DE HOJE</h3>
-            <button onclick="abrirModalRotina()"
-                class="material-symbols-outlined text-primary-fixed hover:bg-white/5 p-1 rounded-full transition-colors">edit_calendar</button>
-        </div>
 
-        <div
-            class="relative overflow-hidden rounded-xl glass-card p-6 glow-primary min-h-[200px] flex flex-col justify-center">
+        <section class="space-y-4">
+            <div class="glass-card rounded-xl p-4">
+                <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">ATIVIDADE SEMANAL</h3>
 
-            <div id="estado-vazio-rotina" class="text-center space-y-4">
-                <div
-                    class="w-16 h-16 bg-[#1c1b1b] rounded-full flex items-center justify-center mx-auto mb-2 border border-white/5">
-                    <span class="material-symbols-outlined text-[#c4c9ac] text-3xl">calendar_add_on</span>
+                <div class="grid grid-cols-7 gap-1 text-center" id="container-semanal">
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-0"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">D</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-1"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-2"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">T</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-3"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-4"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-5"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div id="circle-6"
+                            class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all">
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+                    </div>
                 </div>
-                <h3 class="text-white font-bold">Nenhuma rotina definida</h3>
-                <p class="text-[12px] text-on-surface-variant">Organize sua semana com seus treinos, simulados e
-                    dias de descanso.</p>
+            </div>
+        </section>
 
+        <section class="space-y-4" id="secao-rotina">
+            <div class="flex justify-between items-center">
+                <h3 class="font-headline-md text-headline-md text-white italic">TREINO DE HOJE</h3>
                 <button onclick="abrirModalRotina()"
-                    class="w-full py-3 bg-primary-fixed/10 text-primary-fixed border border-primary-fixed/20 font-bold rounded-xl mt-2 transition-transform active:scale-95 flex items-center justify-center gap-2">
-                    CRIAR ROTINA DE TREINOS
-                </button>
+                    class="material-symbols-outlined text-primary-fixed hover:bg-white/5 p-1 rounded-full transition-colors">edit_calendar</button>
             </div>
 
-            <div id="treino-do-dia" class="hidden relative z-10 w-full"></div>
-        </div>
-    </section>
-
-
-    <section class="glass-card p-6 rounded-xl border border-secondary-fixed/20">
-        <div class="flex items-center gap-3 mb-4">
-            <span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="show_chart">show_chart</span>
-            <h3 class="font-headline-md text-headline-md text-white italic">EVOLUÇÃO SEMANAL</h3>
-        </div>
-        <div class="h-32 flex items-end justify-between gap-2 px-2">
-            <div class="w-full bg-primary-fixed/10 rounded-t h-[40%] hover:bg-primary-fixed transition-colors">
-            </div>
-            <div class="w-full bg-primary-fixed/10 rounded-t h-[60%] hover:bg-primary-fixed transition-colors">
-            </div>
-            <div class="w-full bg-primary-fixed/10 rounded-t h-[30%] hover:bg-primary-fixed transition-colors">
-            </div>
-            <div class="w-full bg-primary-fixed/10 rounded-t h-[80%] hover:bg-primary-fixed transition-colors">
-            </div>
-            <div class="w-full bg-primary-fixed/10 rounded-t h-[95%] hover:bg-primary-fixed transition-colors">
-            </div>
             <div
-                class="w-full bg-primary-fixed/20 rounded-t h-[50%] hover:bg-primary-fixed transition-colors border-t-2 border-primary-fixed shadow-[0_0_10px_rgba(171,214,0,0.3)]">
+                class="relative overflow-hidden rounded-xl glass-card p-6 glow-primary min-h-[200px] flex flex-col justify-center">
+
+                <div id="estado-vazio-rotina" class="text-center space-y-4">
+                    <div
+                        class="w-16 h-16 bg-[#1c1b1b] rounded-full flex items-center justify-center mx-auto mb-2 border border-white/5">
+                        <span class="material-symbols-outlined text-[#c4c9ac] text-3xl">calendar_add_on</span>
+                    </div>
+                    <h3 class="text-white font-bold">Nenhuma rotina definida</h3>
+                    <p class="text-[12px] text-on-surface-variant">Organize sua semana com seus treinos, simulados e
+                        dias de descanso.</p>
+
+                    <button onclick="abrirModalRotina()"
+                        class="w-full py-3 bg-primary-fixed/10 text-primary-fixed border border-primary-fixed/20 font-bold rounded-xl mt-2 transition-transform active:scale-95 flex items-center justify-center gap-2">
+                        CRIAR ROTINA DE TREINOS
+                    </button>
+                </div>
+
+                <div id="treino-do-dia" class="hidden relative z-10 w-full"></div>
             </div>
-            <div class="w-full bg-surface-container-highest rounded-t h-[10%]"></div>
-        </div>
-        <div class="flex justify-between mt-2 px-2">
-            <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
-            <span class="font-label-caps text-[8px] text-on-surface-variant">T</span>
-            <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
-            <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
-            <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
-            <span class="font-label-caps text-[8px] text-primary-fixed">S</span>
-            <span class="font-label-caps text-[8px] text-on-surface-variant">D</span>
-        </div>
-    </section>
+        </section>
+
+
+        <section class="glass-card p-6 rounded-xl border border-secondary-fixed/20">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-secondary-fixed-dim"
+                    data-icon="show_chart">show_chart</span>
+                <h3 class="font-headline-md text-headline-md text-white italic">EVOLUÇÃO SEMANAL</h3>
+            </div>
+            <div class="h-32 flex items-end justify-between gap-2 px-2">
+                <div class="w-full bg-primary-fixed/10 rounded-t h-[40%] hover:bg-primary-fixed transition-colors">
+                </div>
+                <div class="w-full bg-primary-fixed/10 rounded-t h-[60%] hover:bg-primary-fixed transition-colors">
+                </div>
+                <div class="w-full bg-primary-fixed/10 rounded-t h-[30%] hover:bg-primary-fixed transition-colors">
+                </div>
+                <div class="w-full bg-primary-fixed/10 rounded-t h-[80%] hover:bg-primary-fixed transition-colors">
+                </div>
+                <div class="w-full bg-primary-fixed/10 rounded-t h-[95%] hover:bg-primary-fixed transition-colors">
+                </div>
+                <div
+                    class="w-full bg-primary-fixed/20 rounded-t h-[50%] hover:bg-primary-fixed transition-colors border-t-2 border-primary-fixed shadow-[0_0_10px_rgba(171,214,0,0.3)]">
+                </div>
+                <div class="w-full bg-surface-container-highest rounded-t h-[10%]"></div>
+            </div>
+            <div class="flex justify-between mt-2 px-2">
+                <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
+                <span class="font-label-caps text-[8px] text-on-surface-variant">T</span>
+                <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
+                <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
+                <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
+                <span class="font-label-caps text-[8px] text-primary-fixed">S</span>
+                <span class="font-label-caps text-[8px] text-on-surface-variant">D</span>
+            </div>
+        </section>
     </main>
 
-   <nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+    <nav id="bottom-nav"
+        class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
 
-    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="home">home</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
-    </a>
+        <a href="index.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+        </a>
 
-    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
-    </a>
+        <a href="treino.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+        </a>
 
-    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
-    </a>
+        <a href="simuladotaf.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+        </a>
 
-    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="history">history</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
-    </a>
+        <a href="historico.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+        </a>
 
-    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
-      <span class="material-symbols-outlined" data-icon="person">person</span>
-      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
-    </a>
+        <a href="perfil.html"
+            class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+        </a>
 
-</nav>
+    </nav>
 
-<script>
-  // 1. Identifica em qual página o usuário está no momento
-  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
-  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
-  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+    <script>
+        // 1. Identifica em qual página o usuário está no momento
+        const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
 
-  // 3. Percorre todos os botões do menu
-  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
-    const linkDoBotao = btn.getAttribute('href');
-    const icone = btn.querySelector('.material-symbols-outlined');
-    
-    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
-    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+        // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+        const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+        const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
 
-    if (paginaAtual === linkDoBotao || isSimuladoArea) {
-      // Aplica o visual ATIVO
-      btn.classList.remove(...classesInativo);
-      btn.classList.add(...classesAtivo);
-      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
-    } else {
-      // Garante o visual INATIVO
-      btn.classList.remove(...classesAtivo);
-      btn.classList.add(...classesInativo);
-      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
-    }
-  });
-</script>
+        // 3. Percorre todos os botões do menu
+        document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+            const linkDoBotao = btn.getAttribute('href');
+            const icone = btn.querySelector('.material-symbols-outlined');
+
+            // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+            const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+            if (paginaAtual === linkDoBotao || isSimuladoArea) {
+                // Aplica o visual ATIVO
+                btn.classList.remove(...classesInativo);
+                btn.classList.add(...classesAtivo);
+                icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+            } else {
+                // Garante o visual INATIVO
+                btn.classList.remove(...classesAtivo);
+                btn.classList.add(...classesInativo);
+                icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+            }
+        });
+    </script>
 
     <div id="modal-rotina"
         class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md hidden flex-col justify-end md:justify-center">
@@ -514,58 +535,58 @@
         }
 
         // 6. CARREGA A ROTINA NA TELA PRINCIPAL (DASHBOARD)
-       function carregarTreinoDeHoje() {
-    const rotinaSalva = JSON.parse(localStorage.getItem('minhaRotina'));
-    const containerVazio = document.getElementById('estado-vazio-rotina');
-    const containerTreino = document.getElementById('treino-do-dia');
-    const hojeIndex = new Date().getDay();
-    const jaConcluido = localStorage.getItem(`treino-status-${hojeIndex}`) === 'concluido';
+        function carregarTreinoDeHoje() {
+            const rotinaSalva = JSON.parse(localStorage.getItem('minhaRotina'));
+            const containerVazio = document.getElementById('estado-vazio-rotina');
+            const containerTreino = document.getElementById('treino-do-dia');
+            const hojeIndex = new Date().getDay();
+            const jaConcluido = localStorage.getItem(`treino-status-${hojeIndex}`) === 'concluido';
 
-    if (!rotinaSalva || Object.keys(rotinaSalva).length === 0) {
-        containerVazio.style.display = 'block';
-        containerTreino.classList.add('hidden');
-        return;
-    }
+            if (!rotinaSalva || Object.keys(rotinaSalva).length === 0) {
+                containerVazio.style.display = 'block';
+                containerTreino.classList.add('hidden');
+                return;
+            }
 
-    let treinosHoje = rotinaSalva[hojeIndex];
-    if (typeof treinosHoje === 'string') treinosHoje = [treinosHoje];
+            let treinosHoje = rotinaSalva[hojeIndex];
+            if (typeof treinosHoje === 'string') treinosHoje = [treinosHoje];
 
-    if (!treinosHoje || treinosHoje.length === 0) {
-        containerVazio.style.display = 'block';
-        containerTreino.classList.add('hidden');
-        return;
-    }
+            if (!treinosHoje || treinosHoje.length === 0) {
+                containerVazio.style.display = 'block';
+                containerTreino.classList.add('hidden');
+                return;
+            }
 
-    containerVazio.style.display = 'none';
-    containerTreino.classList.remove('hidden');
+            containerVazio.style.display = 'none';
+            containerTreino.classList.remove('hidden');
 
-    if (treinosHoje.includes('Descanso')) {
-        containerTreino.innerHTML = `
+            if (treinosHoje.includes('Descanso')) {
+                containerTreino.innerHTML = `
             <div class="text-center py-4">
                 <span class="material-symbols-outlined text-5xl text-secondary-fixed-dim mb-2">hotel</span>
                 <h3 class="text-white font-bold text-xl italic uppercase">Dia de Descanso</h3>
             </div>`;
-    } else {
-        let htmlAtividades = '';
+            } else {
+                let htmlAtividades = '';
 
-        treinosHoje.forEach(atividade => {
-    const dataHoje = new Date().toISOString().split('T')[0];
-    // Verifica se existe o check para ESTA data e ESTE treino
-    const jaConcluido = localStorage.getItem(`check-${dataHoje}-${atividade}`) === 'concluido';
-    const nomeSeguro = atividade.replace(/'/g, "\\'");
+                treinosHoje.forEach(atividade => {
+                    const dataHoje = new Date().toISOString().split('T')[0];
+                    // Verifica se existe o check para ESTA data e ESTE treino
+                    const jaConcluido = localStorage.getItem(`check-${dataHoje}-${atividade}`) === 'concluido';
+                    const nomeSeguro = atividade.replace(/'/g, "\\'");
 
-    if (jaConcluido) {
-        // Visual de treino riscado
-        htmlAtividades += `
+                    if (jaConcluido) {
+                        // Visual de treino riscado
+                        htmlAtividades += `
             <div class="flex justify-between items-center bg-[#1c1b1b] p-4 rounded-xl border border-primary-fixed/20 mb-3 opacity-60">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-primary-fixed text-[24px]">task_alt</span>
                     <h2 class="font-headline-md text-xl text-white italic uppercase line-through">${atividade}</h2>
                 </div>
             </div>`;
-    } else {
-        // Visual de treino disponível
-        htmlAtividades += `
+                    } else {
+                        // Visual de treino disponível
+                        htmlAtividades += `
             <div class="flex justify-between items-center bg-[#1c1b1b] p-4 rounded-xl border border-white/5 mb-3">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-on-surface-variant text-[24px]">fitness_center</span>
@@ -575,18 +596,18 @@
                     <span class="material-symbols-outlined">play_arrow</span>
                 </button>
             </div>`;
-    }
-});
+                    }
+                });
 
-        containerTreino.innerHTML = `
+                containerTreino.innerHTML = `
             <div class="text-left w-full">
                 <div class="flex justify-between items-center mb-4">
                     <span class="font-label-caps text-label-caps bg-primary-fixed/10 text-primary-fixed px-2 py-1 rounded">HOJE</span>
                 </div>
                 ${htmlAtividades}
             </div>`;
-    }
-}
+            }
+        }
 
         function marcarTreino(dia) {
             const circle = document.getElementById(`circle-${dia}`);
@@ -685,7 +706,21 @@
         }
 
 
+
+        // Registra o Service Worker para o PWA (Instalação do App)
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado! Escopo:', reg.scope))
+                .catch(err => console.error('Erro ao registrar o Service Worker:', err));
+        });
+    }
+
+
     </script>
+
+
+
 
 </body>
 
