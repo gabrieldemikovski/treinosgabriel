@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#3f4c00",
+            "tertiary-fixed-dim": "#00daf3",
+            "secondary": "#c8c6c5",
+            "on-surface": "#e5e2e1",
+            "on-background": "#e5e2e1",
+            "primary-container": "#ccf200",
+            "on-tertiary-fixed": "#001f24",
+            "error": "#ffb4ab",
+            "surface-bright": "#393939",
+            "secondary-fixed-dim": "#c8c6c5",
+            "inverse-surface": "#e5e2e1",
+            "inverse-primary": "#546500",
+            "on-primary": "#2b3400",
+            "tertiary-fixed": "#9cf0ff",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#5a6c00",
+            "surface-container-lowest": "#0e0e0e",
+            "on-tertiary": "#00363d",
+            "surface-dim": "#131313",
+            "inverse-on-surface": "#313030",
+            "on-primary-fixed": "#181e00",
+            "tertiary": "#ffffff",
+            "surface-tint": "#b3d400",
+            "on-secondary-fixed-variant": "#474746",
+            "surface-container-high": "#2a2a2a",
+            "surface-container-highest": "#353534",
+            "outline": "#8f9378",
+            "error-container": "#93000a",
+            "primary-fixed": "#ccf200",
+            "on-surface-variant": "#c5c9ac",
+            "tertiary-container": "#9cf0ff",
+            "on-error": "#690005",
+            "surface-container-low": "#1c1b1b",
+            "on-tertiary-container": "#006f7c",
+            "surface": "#131313",
+            "secondary-container": "#474746",
+            "outline-variant": "#454932",
+            "secondary-fixed": "#e5e2e1",
+            "primary": "#ffffff",
+            "on-secondary-container": "#b7b5b4",
+            "surface-variant": "#353534",
+            "on-error-container": "#ffdad6",
+            "background": "#131313",
+            "primary-fixed-dim": "#b3d400",
+            "on-tertiary-fixed-variant": "#004f58",
+            "on-secondary": "#303030",
+            "on-secondary-fixed": "#1b1c1c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-md": "1rem",
+            "stack-sm": "0.5rem",
+            "base": "8px",
+            "stack-lg": "2rem",
+            "gutter": "1rem",
+            "container-padding-mobile": "1.25rem",
+            "container-padding-desktop": "2.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Archivo Narrow"],
+            "body-md": ["Inter"],
+            "label-caps": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg-mobile": ["Archivo Narrow"],
+            "display-lg": ["Archivo Narrow"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+            "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .active-glow {
+      box-shadow: 0 0 15px rgba(204, 242, 0, 0.15);
+    }
+
+    body {
+      background-color: #131313;
+      color: #e5e2e1;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background min-h-screen flex flex-col">
+  <!-- TopAppBar -->
+  <header
+    class="w-full top-0 sticky z-40 bg-background dark:bg-background border-b border-outline-variant/30 flex justify-between items-center px-container-padding-mobile h-16">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/50">
+        <img class="w-full h-full object-cover"
+          data-alt="A professional close-up portrait of a determined athlete in a dark, high-contrast fitness environment. The lighting is dramatic, with sharp highlights on facial features and a deep charcoal background. The overall aesthetic is cinematic and premium, using a cool color palette with subtle electric lime accents reflecting Kinetic Performance's brand identity."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS1XEI9oiqOQEK8QR8JU2vVcAgBqDtGjiAnbvy87St90-kMjhhUCvqcwjyXzLadPYumtz93eIuQxzN9iuDSnImbycqQ_hxGHdnd9LNDxzry_osbBvC4EHtbLgdChHAAPgdqH4lOtODeqEL-z15aiPXXZhazKA23Nge-YAEeb_9n4qd7B1Ts9RtIueMBg9LgJ_WOY3A2kShBKU0i9hlKQxzgYdYYiyrOhYGmPGIkc4FPrKXQvWWdP3mvcz1w-auMfAPbrlVXYaXGKJs" />
+      </div>
+      <h1 class="font-headline-md text-headline-md text-primary-fixed dark:text-primary-fixed-dim tracking-tight">Olá,
+        Atleta</h1>
+    </div>
+    <button
+      class="text-on-surface-variant hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 duration-150">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+  </header>
+ <main class="flex-1 px-container-padding-mobile py-6 mb-32 max-w-3xl mx-auto w-full">
+    <section class="flex flex-col items-center mb-8">
+      <div class="font-label-caps text-label-caps text-on-surface-variant mb-2">TEMPO DE TREINO</div>
+      <div class="font-display-lg-mobile text-display-lg-mobile text-primary-fixed tracking-tight active-glow px-6 py-2 bg-surface-container rounded-xl border border-outline-variant/20 cursor-pointer" id="stopwatch">
+        00:00:00
+      </div>
+      <div class="flex gap-4 mt-4">
+        <button onclick="toggleTimer()" id="btn-timer" class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-4 py-2 rounded-full hover:bg-surface-variant transition-colors active:scale-95">
+          <span class="material-symbols-outlined text-[18px]" id="icone-timer">play_arrow</span> 
+          <span id="texto-timer">INICIAR</span>
+        </button>
+        
+        <button class="flex items-center gap-2 font-label-caps text-label-caps text-primary-fixed bg-primary-container/10 border border-primary-container px-4 py-2 rounded-full hover:bg-primary-container/20 transition-colors">
+          <span class="material-symbols-outlined text-[18px]">add_alarm</span> DESCANSO
+        </button>
+      </div>
+    </section>
+
+    <div id="container-exercicios-execucao" class="space-y-4">
+        </div>
+
+    <div class="mt-12 mb-8">
+      <button onclick="finalizarTreinoAtual()" class="w-full h-14 bg-primary-container text-on-primary-container font-label-caps text-label-caps rounded-xl active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary-container/10 flex items-center justify-center gap-2">                
+          FINALIZAR TREINO <span class="material-symbols-outlined">done_all</span>
+      </button>
+    </div>
+</main>
+<nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+ 
+
+<script>
+ 
+    let seconds = 0;
+    let timerInterval = null;
+    let isRunning = false;
+    const timerDisplay = document.getElementById('stopwatch');
+
+    // Função de renderização do tempo
+    function updateDisplay() {
+        const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+        const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${h}:${m}:${s}`;
+    }
+
+    // Pegando os elementos do botão
+    const btnTexto = document.getElementById('texto-timer');
+    const btnIcone = document.getElementById('icone-timer');
+
+    // Cronômetro clicável unificado
+    function toggleTimer() {
+        if (!isRunning) {
+            isRunning = true;
+            timerInterval = setInterval(() => {
+                seconds++;
+                updateDisplay();
+            }, 1000);
+            timerDisplay.classList.add('border-primary-fixed');
+            if(btnTexto) btnTexto.innerText = "PAUSAR";
+            if(btnIcone) btnIcone.innerText = "pause";
+        } else {
+            isRunning = false;
+            clearInterval(timerInterval);
+            timerDisplay.classList.remove('border-primary-fixed');
+            if(btnTexto) btnTexto.innerText = "RETOMAR";
+            if(btnIcone) btnIcone.innerText = "play_arrow";
+        }
+    }
+
+    // Ativa o clique tanto nos números quanto no botão
+    timerDisplay.classList.add('cursor-pointer');
+    timerDisplay.addEventListener('click', toggleTimer);
+
+    // GATILHO ADICIONADO AQUI: Manda a página carregar o treino assim que abrir
+    document.addEventListener('DOMContentLoaded', carregarTreinoAtivo);
+
+    // Função Carregar Treino com Segurança
+    function carregarTreinoAtivo() {
+        const container = document.getElementById('container-exercicios-execucao');
+        const treinoData = localStorage.getItem('treinoEmExecucao');
+
+        if (!treinoData) {
+            container.innerHTML = `
+                <div class="p-6 text-center bg-surface-container rounded-xl border border-error/20">
+                    <p class="text-error font-bold">Nenhum treino selecionado!</p>
+                    <p class="text-sm text-on-surface-variant">Volte na tela de treinos e clique em INICIAR.</p>
+                </div>`;
+            return;
+        }
+
+        try {
+            const treino = JSON.parse(treinoData);
+            container.innerHTML = ''; 
+
+            if (treino.exercicios && treino.exercicios.length > 0) {
+                treino.exercicios.forEach((ex) => {
+                    let setsHtml = '';
+                    const numSeries = parseInt(ex.series) || 1;
+                    for(let i = 1; i <= numSeries; i++) {
+                        setsHtml += `
+                            <div class="flex items-center justify-between bg-surface-container-high p-3 rounded-lg border border-white/5">
+                                <span class="font-label-caps text-on-surface-variant">SET ${i}</span>
+                                <span class="font-body-md">${ex.repeticoes || '---'}</span>
+                                <button class="w-8 h-8 rounded-lg border border-outline flex items-center justify-center" onclick="this.classList.toggle('bg-primary-container'); this.querySelector('span').classList.toggle('text-transparent')">
+                                    <span class="material-symbols-outlined text-transparent text-[20px]">check</span>
+                                </button>
+                            </div>
+                        `;
+                    }
+                    container.innerHTML += `
+                        <div class="bg-surface-container border border-white/5 rounded-xl p-4">
+                            <h3 class="font-headline-md text-white mb-3">${ex.nome}</h3>
+                            <div class="space-y-2">${setsHtml}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                container.innerHTML = '<div class="p-6 text-center text-on-surface-variant">Este treino está vazio.</div>';
+            }
+        } catch (e) {
+            console.error("Erro ao ler o treino:", e);
+        }
+    }
+
+    // Função que finaliza o treino
+    function finalizarTreinoAtual() {
+        const dataHoje = new Date().toISOString().split('T')[0];
+        const treinoAtual = JSON.parse(localStorage.getItem('treinoEmExecucao')) || { nome: "Treino Desconhecido" };
+        
+        // 1. Marca o check individual
+        localStorage.setItem(`check-${dataHoje}-${treinoAtual.nome}`, 'concluido');
+
+        // 2. Registra no Histórico
+        let historico = JSON.parse(localStorage.getItem('historicoTreinos')) || [];
+        
+        historico.push({
+            nome: treinoAtual.nome,
+            data: new Date().toISOString(),
+            tipo: treinoAtual.tipo || 'Treino',
+            concluido: true
+        });
+        
+        localStorage.setItem('historicoTreinos', JSON.stringify(historico));
+
+        // 3. Feedback e Limpeza
+        alert("Treino " + treinoAtual.nome + " registrado com sucesso!");
+        localStorage.removeItem('treinoEmExecucao');
+        window.location.href = 'index.html';
+    }
+</script>
+
+
+
+</body>
+
+</html>

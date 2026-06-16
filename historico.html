@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>FITFLOW - Histórico TAF</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#0e0e0e",
+            "primary": "#ffffff",
+            "outline": "#8e9379",
+            "secondary-fixed-dim": "#00dbe9",
+            "tertiary": "#ffffff",
+            "surface-bright": "#3a3939",
+            "primary-container": "#c3f400",
+            "surface-container": "#201f1f",
+            "tertiary-fixed-dim": "#c8c6c5",
+            "surface-variant": "#353534",
+            "on-background": "#e5e2e1",
+            "on-error-container": "#ffdad6",
+            "surface-dim": "#131313",
+            "surface-container-high": "#2a2a2a",
+            "secondary": "#d3fbff",
+            "on-tertiary-fixed-variant": "#474746",
+            "on-error": "#690005",
+            "error-container": "#93000a",
+            "outline-variant": "#444933",
+            "surface-container-highest": "#353534",
+            "surface": "#131313",
+            "tertiary-container": "#e5e2e1",
+            "on-secondary-container": "#00686f",
+            "on-tertiary-fixed": "#1c1b1b",
+            "error": "#ffb4ab",
+            "on-primary-fixed-variant": "#3c4d00",
+            "inverse-primary": "#506600",
+            "on-secondary-fixed-variant": "#004f54",
+            "surface-tint": "#abd600",
+            "on-tertiary": "#313030",
+            "secondary-container": "#00eefc",
+            "on-primary": "#283500",
+            "on-surface": "#e5e2e1",
+            "secondary-fixed": "#7df4ff",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "primary-fixed": "#c3f400",
+            "on-surface-variant": "#c4c9ac",
+            "tertiary-fixed": "#e5e2e1",
+            "on-secondary": "#00363a",
+            "on-primary-fixed": "#161e00",
+            "background": "#131313",
+            "surface-container-low": "#1c1b1b",
+            "on-primary-container": "#556d00",
+            "on-tertiary-container": "#656464",
+            "primary-fixed-dim": "#abd600",
+            "on-secondary-fixed": "#002022"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-padding-desktop": "2.5rem",
+            "stack-gap-md": "1rem",
+            "gutter": "1rem",
+            "base": "8px",
+            "stack-gap-lg": "2rem",
+            "container-padding-mobile": "1.25rem",
+            "stack-gap-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "display-lg-mobile": ["Archivo Narrow"],
+            "stat-xl": ["Archivo Narrow"],
+            "display-lg": ["Archivo Narrow"],
+            "label-caps": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-md": ["Archivo Narrow"],
+            "headline-md-mobile": ["Archivo Narrow"],
+            "display-lg-mobile": ["Archivo Narrow"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "stat-xl": ["40px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-md-mobile": ["20px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(195, 244, 0, 0.1);
+    }
+
+    .chart-glow {
+      filter: drop-shadow(0 0 8px rgba(0, 219, 233, 0.5));
+    }
+
+    body {
+      background-color: #0F0F0F;
+      color: #e5e2e1;
+      overflow-x: hidden;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="font-body-md text-on-surface">
+  <!-- TopAppBar -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 h-16 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed/20">
+        <img alt="Foto de perfil do usuário" class="w-full h-full object-cover"
+          data-alt="A close-up professional portrait of a determined athlete with subtle perspiration, set against a dark, moody gym background with neon green lighting accents. The lighting is dramatic and high-contrast, emphasizing the discipline and intensity of the fitness brand. The overall aesthetic is futuristic and high-octane with a deep-space color palette."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf3GQZWkGNejUdHjV8S8uLYoUNAOqlU1ziE7g7yNuE3bI5A7nQBMo4aunCF_sHcTkYeMdF_wDZno5zPZQQKPUX-v67sSUlDlWTU0IuVG5yufTesU445qvg7D_sQl5tdpOeLF6dHXYNEi0MA7NRBwDwgeU2LJDjQwz8-TBqDtNkTZKZYhWagMXq3aXL7yBdw7zNILqUb7zWIrg1CzygAbKRwphH0VR-Mo7szuntFmGnR6v9lKcBizMS0VA3snph56MAnx1zZ46ZFOg" />
+      </div>
+      <span
+        class="font-display-lg-mobile text-display-lg-mobile italic font-black text-primary-fixed uppercase tracking-tighter">FITFLOW</span>
+    </div>
+    <button
+      class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/5 transition-colors active:scale-95">
+      <span class="material-symbols-outlined text-primary-fixed" data-icon="notifications">notifications</span>
+    </button>
+  </header>
+
+  <main class="mt-20 px-5 max-w-2xl mx-auto space-y-6 pb-24">
+    <div class="flex justify-between items-end mb-2">
+      <h2 class="font-headline-md text-headline-md text-white italic uppercase tracking-tight">Atividades Concluídas
+      </h2>
+      <span id="contador-historico" class="text-label-caps font-label-caps text-primary-fixed">0 REGISTROS</span>
+    </div>
+
+    <div id="container-historico" class="space-y-4">
+    </div>
+  </main>
+
+
+
+
+
+
+  <nav id="bottom-nav"
+    class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html"
+      class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html"
+      class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html"
+      class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html"
+      class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html"
+      class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+  </nav>
+
+  <script>
+    // 1. Identifica em qual página o usuário está no momento
+    const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+
+    // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+    const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+    const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+    // 3. Percorre todos os botões do menu
+    document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+      const linkDoBotao = btn.getAttribute('href');
+      const icone = btn.querySelector('.material-symbols-outlined');
+
+      // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+      const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+      if (paginaAtual === linkDoBotao || isSimuladoArea) {
+        // Aplica o visual ATIVO
+        btn.classList.remove(...classesInativo);
+        btn.classList.add(...classesAtivo);
+        icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+      } else {
+        // Garante o visual INATIVO
+        btn.classList.remove(...classesAtivo);
+        btn.classList.add(...classesInativo);
+        icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+      }
+    });
+  </script>
+
+  <script>
+    // Micro-interactions for glass cards
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousedown', () => {
+        card.style.transform = 'scale(0.98)';
+      });
+      card.addEventListener('mouseup', () => {
+        card.style.transform = 'scale(1)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+
+
+
+
+  <div id="container-historico" class="space-y-4"></div>
+
+  <script>
+
+  
+    document.addEventListener('DOMContentLoaded', carregarHistoricoUnificado);
+
+    function carregarHistoricoUnificado() {
+        const container = document.getElementById('container-historico');
+        const contador = document.getElementById('contador-historico');
+        
+        // 1. LÊ AS DUAS GAVETAS DE DADOS
+        const simulados = JSON.parse(localStorage.getItem('fitflow_history')) || [];
+        const treinos = JSON.parse(localStorage.getItem('historicoTreinos')) || [];
+        
+        // 2. JUNTA TUDO E ORDENA DO MAIS NOVO PARA O MAIS VELHO
+        let logs = [...simulados, ...treinos];
+        
+        logs.sort((a, b) => {
+            // Usa o ID (que é um timestamp Date.now) se tiver, senão converte a data antiga
+            const tempoA = a.id ? a.id : new Date(a.data).getTime();
+            const tempoB = b.id ? b.id : new Date(b.data).getTime();
+            return tempoB - tempoA; 
+        });
+
+        // 3. ATUALIZA O CONTADOR
+        if (contador) {
+            contador.innerText = `${logs.length} REGISTRO${logs.length !== 1 ? 'S' : ''}`;
+        }
+
+        // Se estiver vazio, mostra a mensagem
+        if (logs.length === 0) {
+            container.innerHTML = `
+                <div class="glass-card p-10 rounded-2xl text-center border border-white/5 flex flex-col items-center gap-4">
+                    <div class="w-16 h-16 bg-[#1c1b1b] rounded-full flex items-center justify-center mb-2">
+                        <span class="material-symbols-outlined text-[#c4c9ac] text-3xl">history</span>
+                    </div>
+                    <h3 class="text-white font-bold text-lg italic uppercase">Nenhuma atividade</h3>
+                    <p class="text-sm text-on-surface-variant">Os treinos e simulados que você concluir aparecerão registrados aqui.</p>
+                </div>`;
+            return;
+        }
+
+        // 4. RENDERIZA OS CARDS (Diferenciando Treino de Simulado)
+        container.innerHTML = logs.map(item => {
+            const isSimulado = item.tipo === 'Simulado TAF';
+
+            // === SE FOR UM TREINO ===
+            if (!isSimulado) {
+                return `
+                <div class="glass-card p-4 rounded-xl border border-white/5 hover:border-[#00dbe9]/30 transition-all cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-[#00dbe9]/10 flex items-center justify-center border border-[#00dbe9]/20">
+                                <span class="material-symbols-outlined text-[#00dbe9]">fitness_center</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white uppercase italic tracking-wide">${item.nome || 'Treino'}</h3>
+                                <span class="text-[10px] text-on-surface-variant uppercase tracking-widest">${item.data || ''}</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-black text-white italic text-lg">${item.pontuacao || ''}</span>
+                            <div class="text-[9px] font-bold tracking-widest text-[#00dbe9] uppercase">TREINO CONCLUÍDO</div>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            // === SE FOR UM SIMULADO ===
+            return `
+            <div class="glass-card p-4 rounded-xl border border-white/5 hover:border-[#ccf200]/30 transition-all cursor-pointer" onclick="toggleDetalhes(this)">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#ccf200]/10 flex items-center justify-center border border-[#ccf200]/20">
+                            <span class="material-symbols-outlined text-[#ccf200]">analytics</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white uppercase italic tracking-wide">${item.nome}</h3>
+                            <span class="text-[10px] text-on-surface-variant uppercase tracking-widest">${item.data}</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-black text-white italic text-lg">${item.pontosTotal || 0} pts</span>
+                        <div class="text-[9px] font-bold tracking-widest ${item.status === 'APTO' ? 'text-[#ccf200]' : 'text-red-500'} uppercase">${item.status || ''}</div>
+                    </div>
+                </div>
+                
+                <div class="detalhes-container hidden mt-4 pt-4 border-t border-white/5 space-y-3">
+                    ${item.detalhes ? item.detalhes.map(d => {
+                        let exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[9px] text-on-surface-variant uppercase tracking-widest">${d.metrica || ''}</span></span>`;
+                        
+                        if (item.modo === 'edital' || d.pontosGanhos !== undefined) {
+                            exibicaoDireita += `<span class="text-[#ccf200] font-bold text-[10px] ml-2 block text-right">${d.pontosGanhos || 0} pts</span>`;
+                        } else if (d.minimo > 0) {
+                            exibicaoDireita = `<span class="font-bold text-white text-sm">${d.atingido} <span class="text-[10px] text-on-surface-variant opacity-50">/ ${d.minimo}</span></span>`;
+                        }
+
+                        return `
+                        <div class="flex justify-between items-center text-xs text-on-surface-variant">
+                            <span class="uppercase font-bold">${d.nome}</span>
+                            <div class="text-right">${exibicaoDireita}</div>
+                        </div>
+                        `;
+                    }).join('') : '<p class="text-xs italic">Sem detalhes.</p>'}
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    function toggleDetalhes(element) {
+        const detalhes = element.querySelector('.detalhes-container');
+        if (detalhes) detalhes.classList.toggle('hidden');
+    }
+</script>
+</body>
+
+</html>

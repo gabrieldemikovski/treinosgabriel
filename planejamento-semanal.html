@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FITFLOW - Planejamento Semanal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(195, 244, 0, 0.1);
+        }
+
+        .active-glow {
+            box-shadow: 0 0 20px rgba(195, 244, 0, 0.15);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 10px;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#c3f400",
+                        "on-tertiary": "#313030",
+                        "background": "#131313",
+                        "on-primary-fixed": "#161e00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary-fixed-dim": "#abd600",
+                        "on-secondary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#353534",
+                        "outline": "#8e9379",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "primary": "#ffffff",
+                        "surface": "#131313",
+                        "on-primary-container": "#556d00",
+                        "tertiary": "#ffffff",
+                        "surface-tint": "#abd600",
+                        "surface-container-highest": "#353534",
+                        "secondary-container": "#00eefc",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary-container": "#00686f",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#656464",
+                        "inverse-primary": "#506600",
+                        "outline-variant": "#444933",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#00363a",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed": "#c3f400",
+                        "on-primary": "#283500",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary": "#d3fbff",
+                        "inverse-on-surface": "#313030",
+                        "on-error": "#690005",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "tertiary-container": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap-lg": "2rem",
+                        "stack-gap-sm": "0.5rem",
+                        "gutter": "1rem",
+                        "container-padding-mobile": "1.25rem",
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px",
+                        "stack-gap-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Archivo Narrow"],
+                        "display-lg-mobile": ["Archivo Narrow"],
+                        "display-lg": ["Archivo Narrow"],
+                        "stat-xl": ["Archivo Narrow"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "stat-xl": ["40px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen pb-40">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 shadow-sm flex justify-between items-center w-full px-container-padding-mobile h-16">
+        <div class="flex items-center gap-3">
+            <div
+                class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-primary-fixed/20">
+                <img alt="Foto de perfil" class="w-full h-full object-cover"
+                    data-alt="A close-up portrait of a determined fitness athlete in a high-tech gym environment. The lighting is dramatic, with neon green accents highlighting the contours of their face, creating a cinematic and high-octane mood. The background is softly blurred, showcasing futuristic gym equipment in a deep space black aesthetic, perfectly aligned with a professional dark mode UI design."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIp4JdTyoTcfmVGiwqLHKHXOmIMTdGvRGj9raugnNQHRIRv2ziGTorfsd3TrvXPWYb1YWr1mp2_09Ipjcw4YxHnrrmlFhrZNzgWh0cNcymuiAndpv2fp3TefAIabwPwY6dpnPfKPnvX00qaN5Gs6NNM3XUkhTwYzloLOF7Lsfn5zVH6TGxN6EFnrWecaFVfkX8WiTbwgn9Mxdw1yLiueYg13rgvWroHkY0-S2BklIbsuDlzQENCnUVgnJlClEJUiJV_tgl2nCOr2c" />
+            </div>
+            <h1 class="font-display-lg-mobile text-display-lg-mobile italic font-black text-primary-fixed">FITFLOW</h1>
+        </div>
+        <button class="text-primary-fixed active:scale-95 transition-transform">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+    </header>
+    <main class="mt-20 px-container-padding-mobile">
+        <!-- Header Section -->
+        <section class="mb-8">
+            <h2 class="font-headline-md-mobile text-headline-md-mobile text-primary mb-2 uppercase tracking-tight">
+                Planejamento Semanal</h2>
+            <p class="text-on-surface-variant font-body-md opacity-80">Organize sua disciplina. Defina os alvos da
+                semana para atingir o seu ápice.</p>
+        </section>
+        <!-- Planning List -->
+        <div class="space-y-4 mb-12" id="week-planner">
+            <!-- Template Item: Monday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300 active-glow" data-day="segunda">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Segunda-feira<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-segunda">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed opacity-40">calendar_today</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button
+                        class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors relative"
+                        onclick="selectWorkout('segunda', 'Superior A', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">SUPERIOR A</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] absolute -top-1 -right-1 bg-background text-error rounded-full hover:scale-110 transition-transform">cancel</span></button>
+                    <button
+                        class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors relative"
+                        onclick="selectWorkout('segunda', 'Inferior B', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">INFERIOR B</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] absolute -top-1 -right-1 bg-background text-error rounded-full hover:scale-110 transition-transform">cancel</span></button>
+                    <button
+                        class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors relative"
+                        onclick="selectWorkout('segunda', 'Cardio', 'directions_run')">
+                        <span class="material-symbols-outlined text-[18px]">directions_run</span>
+                        <span class="font-label-caps text-[10px]">CARDIO</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] absolute -top-1 -right-1 bg-background text-error rounded-full hover:scale-110 transition-transform">cancel</span></button>
+                    <button
+                        class="workout-btn rest-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-secondary-container/20 transition-colors relative"
+                        onclick="selectWorkout('segunda', 'Descanso', 'bedtime')">
+                        <span class="material-symbols-outlined text-[18px]">bedtime</span>
+                        <span class="font-label-caps text-[10px]">DESCANSO</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] absolute -top-1 -right-1 bg-background text-error rounded-full hover:scale-110 transition-transform">cancel</span></button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Tuesday to Sunday generated dynamically via similar structure for brevity/visual impact -->
+            <!-- Tuesday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300" data-day="terca">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Terça-feira<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-terca">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed opacity-40">calendar_today</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('terca', 'Superior A', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">SUPERIOR A</span>
+                    </button>
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('terca', 'Cardio', 'directions_run')">
+                        <span class="material-symbols-outlined text-[18px]">directions_run</span>
+                        <span class="font-label-caps text-[10px]">CARDIO</span>
+                    </button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Wednesday (Rest Example) -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300 border-secondary-container/30"
+                data-day="quarta">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span
+                            class="font-label-caps text-label-caps text-secondary-container uppercase">Quarta-feira<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-secondary-container font-body-md font-bold flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-quarta">Descanso<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                    <span class="material-symbols-outlined text-secondary-container"
+                        style="font-variation-settings: 'FILL' 1;">bedtime</span>
+                </div>
+                <div class="flex gap-2 overflow-x-auto scroll-hide pb-2">
+                    <button
+                        class="shrink-0 workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('quarta', 'Inferior B', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">TROCAR PARA INFERIOR</span>
+                    </button>
+                    <button
+                        class="shrink-0 workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Thursday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300" data-day="quinta">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Quinta-feira<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-quinta">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed opacity-40">calendar_today</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('quinta', 'Superior B', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">SUPERIOR B</span>
+                    </button>
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('quinta', 'Cardio', 'directions_run')">
+                        <span class="material-symbols-outlined text-[18px]">directions_run</span>
+                        <span class="font-label-caps text-[10px]">CARDIO</span>
+                    </button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Friday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300" data-day="sexta">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Sexta-feira<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-sexta">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed opacity-40">calendar_today</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('sexta', 'Full Body', 'fitness_center')">
+                        <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                        <span class="font-label-caps text-[10px]">FULL BODY</span>
+                    </button>
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('sexta', 'Descanso', 'bedtime')">
+                        <span class="material-symbols-outlined text-[18px]">bedtime</span>
+                        <span class="font-label-caps text-[10px]">DESCANSO</span>
+                    </button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Weekend Banner -->
+            <div
+                class="relative rounded-xl overflow-hidden h-32 flex items-center p-6 border border-primary-fixed/30 group">
+                <img alt="Weekend background"
+                    class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
+                    data-alt="A moody, high-contrast image of a workout space with heavy dumbbells and a weight bench. The environment is dark with sharp neon cyan and lime green light leaks, creating an atmosphere of intense focus and athletic discipline. Professional photography with deep shadows and vibrant light accents to match a dark fitness UI."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_n0HFUtuy6lJSip_OSKrYHue5W0LQoKbocAKpDixXAT6i5Tr9CF4NeRgkQYSeE1FRasECxWFqqJ5_pImLcMlxDDPdFZyQX74lIQTUUQy6I_OFNQLxCn1hN2qwzOjg7Ixdoui4Wzf44hS9WDnmDRcxgm-vp50rGDTwdCP8SJW4IAousey6Xu5xKGObvsl-cpaOeCc6yTaJ0zqqo9qMxn41yxDG0UkwkHyARQebzh4B8v4LPjLHaeQrvx9ydkIhSqdO2A7cgZVafuE" />
+                <div class="relative z-10">
+                    <h3 class="font-headline-md text-headline-md text-primary uppercase">Fim de Semana</h3>
+                    <p class="font-label-caps text-label-caps text-primary-fixed">Sábado &amp; Domingo</p>
+                </div>
+            </div>
+            <!-- Saturday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300" data-day="sabado">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Sábado<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-sabado">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('sabado', 'Long Run', 'directions_run')">
+                        <span class="material-symbols-outlined text-[18px]">directions_run</span>
+                        <span class="font-label-caps text-[10px]">LONG RUN</span>
+                    </button>
+                    <button class="workout-btn flex items-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('sabado', 'Descanso', 'bedtime')">
+                        <span class="material-symbols-outlined text-[18px]">bedtime</span>
+                        <span class="font-label-caps text-[10px]">DESCANSO</span>
+                    </button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+            <!-- Sunday -->
+            <div class="day-card glass-card rounded-xl p-4 transition-all duration-300" data-day="domingo">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-primary-fixed uppercase">Domingo<span
+                                class="material-symbols-outlined text-[14px] ml-1 align-middle text-on-surface-variant hover:text-primary-fixed cursor-pointer transition-colors">edit</span></span>
+                        <span
+                            class="workout-status text-on-surface-variant font-body-md italic flex items-center cursor-pointer hover:text-primary-fixed"
+                            id="status-domingo">Pendente<span
+                                class="material-symbols-outlined text-[18px] ml-1 align-middle text-on-surface-variant group-hover:text-primary-fixed">keyboard_arrow_down</span></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-2">
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-white/5 bg-white/5"
+                        onclick="selectWorkout('domingo', 'Descanso Ativo', 'self_improvement')">
+                        <span class="material-symbols-outlined text-[18px]">self_improvement</span>
+                        <span class="font-label-caps text-[10px]">MOBILIDADE / DESCANSO ATIVO</span>
+                    </button>
+                    <button
+                        class="workout-btn flex items-center justify-center gap-2 p-3 rounded-lg border border-dashed border-primary-fixed/30 bg-transparent hover:bg-primary-fixed/10 transition-colors group"><span
+                            class="material-symbols-outlined text-[18px] text-primary-fixed">add</span><span
+                            class="font-label-caps text-[10px] text-primary-fixed">ADICIONAR</span></button>
+                </div>
+            </div>
+        </div>
+        <!-- Sticky Save Action -->
+        <div class="fixed bottom-24 left-0 right-0 px-container-padding-mobile z-40">
+            <button type="button" onclick="savePlanner()"
+                class="w-full bg-primary-container text-on-primary-fixed font-headline-md py-4 rounded-xl shadow-[0_10px_30px_rgba(195,244,0,0.3)] active:scale-95 transition-all flex items-center justify-center gap-3">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'wght' 700;">save</span>
+                SALVAR PLANEJAMENTO
+            </button>
+        </div>
+    </main>
+
+    
+
+
+<nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+
+    <script>
+        function selectWorkout(dayId, workoutName, icon) {
+            const dayCard = document.querySelector(`[data-day="${dayId}"]`);
+            if (!dayCard) return;
+
+            const statusLabel = document.getElementById(`status-${dayId}`);
+            const iconElement = dayCard.querySelector('.material-symbols-outlined:last-child');
+            const clickedButton = Array.from(dayCard.querySelectorAll('.workout-btn')).find(btn => btn.textContent.includes(workoutName));
+
+            // Remove previous active state from buttons in this day
+            dayCard.querySelectorAll('.workout-btn').forEach(btn => {
+                btn.classList.remove('bg-primary-container', 'text-on-primary-fixed', 'border-primary-container', 'bg-secondary-container', 'text-on-secondary-container');
+                btn.classList.add('bg-white/5', 'text-on-background');
+            });
+
+            // Set visual status
+            statusLabel.innerText = workoutName;
+            statusLabel.classList.remove('italic', 'text-on-surface-variant', 'text-secondary-container');
+
+            // Special styling for Rest Day (Descanso)
+            if (workoutName === 'Descanso' || workoutName === 'Descanso Ativo') {
+                dayCard.style.borderColor = 'rgba(0, 238, 252, 0.3)';
+                statusLabel.classList.add('text-secondary-container', 'font-bold');
+                iconElement.innerText = 'bedtime';
+                iconElement.style.color = '#00eefc';
+                iconElement.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                dayCard.style.borderColor = 'rgba(195, 244, 0, 0.4)';
+                statusLabel.classList.add('text-primary-fixed', 'font-bold');
+                iconElement.innerText = icon;
+                iconElement.style.color = '#c3f400';
+                iconElement.style.fontVariationSettings = "'FILL' 1";
+                dayCard.classList.add('active-glow');
+            }
+
+            if (clickedButton) {
+                clickedButton.classList.remove('bg-white/5');
+                if (workoutName === 'Descanso') {
+                    clickedButton.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                } else {
+                    clickedButton.classList.add('bg-primary-container', 'text-on-primary-fixed');
+                }
+            }
+        }
+
+        function savePlanner() {
+            const planner = Array.from(document.querySelectorAll('.day-card')).map(card => ({
+                day: card.dataset.day,
+                status: card.querySelector('.workout-status')?.textContent.trim() || 'Pendente'
+            }));
+            localStorage.setItem('fitflow_planejamento_semanal', JSON.stringify(planner));
+            alert('Planejamento semanal salvo com sucesso!');
+        }
+    </script>
+</body>
+
+</html>

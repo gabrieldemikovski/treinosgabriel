@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Perfil FITFLOW - Evolução</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-container": "#656464",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed-dim": "#abd600",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#002022",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#8e9379",
+                        "secondary-container": "#00eefc",
+                        "surface-tint": "#abd600",
+                        "on-primary": "#283500",
+                        "primary-fixed": "#c3f400",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-primary-container": "#556d00",
+                        "surface-dim": "#131313",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "background": "#131313",
+                        "on-tertiary": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#d3fbff",
+                        "primary": "#ffffff",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary-container": "#00686f",
+                        "inverse-primary": "#506600",
+                        "primary-container": "#c3f400",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary": "#00363a",
+                        "outline-variant": "#444933",
+                        "tertiary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#e5e2e1",
+                        "tertiary-container": "#e5e2e1",
+                        "on-primary-fixed-variant": "#3c4d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px",
+                        "stack-gap-sm": "0.5rem",
+                        "stack-gap-lg": "2rem",
+                        "container-padding-mobile": "1.25rem",
+                        "stack-gap-md": "1rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "stat-xl": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"],
+                        "display-lg-mobile": ["Archivo Narrow"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "stat-xl": ["40px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(195, 244, 0, 0.15);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 219, 233, 0.2) 0%, rgba(0, 219, 233, 0) 100%);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md overflow-x-hidden pb-24">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-container-padding-mobile h-16 shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-primary-fixed/20">
+                <img alt="Perfil" class="w-full h-full object-cover"
+                    data-alt="A close-up portrait of a determined athlete with subtle sweat on their brow, captured in high-contrast dramatic lighting within a futuristic gym. The background is dark and moody with neon Electric Cyan accents reflecting off surfaces. The style is cinematic and high-octane, emphasizing discipline and focus in a deep-space minimalist aesthetic."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJMayGJjoAJJ4nN0BQfaFmHumHOy3d1UJF_eNmkwqlB8H5IBYwiIt-8AU92FdiWY-Cn5eGctNAHPnip3ytusycSnY3ftByFrO5feDULQfo3IqG2z2Jcp8qT99hOa1wT5wK6EnP0-vZAEJGP0MCfCAd29A4465uK4kNsn6Pqian8X0v3n3VgFANJe0o1OvmGE4u3zLmQT0kGqNqTWkXpAVreqKrCRue3OSHkUe7yrOzYPfyj5uiGfNVSrySCX9080cZ7p31DVSVj1c" />
+            </div>
+            <h1
+                class="font-display-lg-mobile text-display-lg-mobile italic font-black text-primary-fixed tracking-tighter">
+                FITFLOW</h1>
+        </div>
+        <button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+    </header>
+
+
+    <section class="flex flex-col items-center text-center mt-20">
+        <label class="cursor-pointer mb-2">
+            <input type="file" class="hidden" onchange="previewFile(this)">
+            <img id="profile-img"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJMayGJjoAJJ4nN0BQfaFmHumHOy3d1UJF_eNmkwqlB8H5IBYwiIt-8AU92FdiWY-Cn5eGctNAHPnip3ytusycSnY3ftByFrO5feDULQfo3IqG2z2Jcp8qT99hOa1wT5wK6EnP0-vZAEJGP0MCfCAd29A4465uK4kNsn6Pqian8X0v3n3VgFANJe0o1OvmGE4u3zLmQT0kGqNqTWkXpAVreqKrCRue3OSHkUe7yrOzYPfyj5uiGfNVSrySCX9080cZ7p31DVSVj1c"
+                class="w-24 h-24 rounded-full object-cover border-2 border-primary-fixed">
+            <div class="text-[10px] text-primary-fixed uppercase mt-2">Alterar Foto</div>
+        </label>
+
+        <input id="input-nome-perfil" type="text" placeholder="Digite seu Nome" onchange="salvarNomePerfil()"
+            class="bg-transparent text-center text-2xl font-bold text-white border-none w-full outline-none focus:ring-0 placeholder-white/30">
+    </section>
+
+
+    <main class="mt-20 px-container-padding-mobile space-y-stack-gap-lg">
+        <!-- Hero Header -->
+        <section>
+            <div class="flex justify-between items-end">
+                <div>
+                    <span class="font-label-caps text-label-caps text-primary-fixed">MEU PROGRESSO</span>
+                    <h2 class="font-headline-md-mobile text-headline-md-mobile text-white">Evolução Corporal</h2>
+                </div>
+                <button
+                    class="flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-4 py-2 rounded-xl font-label-caps text-label-caps font-bold hover:scale-95 transition-transform"
+                    onclick="toggleModal()">
+                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                    EDITAR
+                </button>
+            </div>
+
+
+            <section class="mt-8 px-5">
+                <div class="glass-card p-6 rounded-xl border border-primary-fixed/20">
+                    <h3 class="text-[12px] font-bold text-primary-fixed uppercase mb-4">Peso do Dia</h3>
+                    <div class="flex gap-4">
+                        <input id="peso-dia" type="number" step="0.1" placeholder="Ex: 76.5"
+                            class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-primary-fixed text-white px-4 py-3 outline-none">
+                        <button onclick="atualizarPeso()"
+                            class="bg-primary-fixed text-black px-6 py-3 rounded-lg font-bold">OK</button>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+        <!-- Stats Grid (Bento Style) -->
+        <section class="grid grid-cols-2 gap-stack-gap-md">
+            <!-- IMC Card -->
+            <div class="glass-card border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+                <div>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">IMC ATUAL</span>
+                    <p id="imc-display" class="font-stat-xl text-stat-xl text-secondary-fixed-dim mt-1">24.2</p>
+                </div>
+                <div class="mt-4">
+                    <span
+                        class="px-2 py-1 bg-secondary-fixed/10 text-secondary-fixed rounded-full text-[10px] font-bold tracking-widest uppercase">Peso
+                        Normal</span>
+                </div>
+            </div>
+            <!-- Weight Change Card -->
+            <div class="glass-card border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+                <div>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">VARIAÇÃO</span>
+                    <p id="var-display" class="font-stat-xl text-stat-xl text-primary-fixed mt-1">-3.4<span
+                            class="text-lg ml-1">kg</span></p>
+                </div>
+                <div class="flex items-center gap-1 text-primary-fixed/80">
+                    <span class="material-symbols-outlined text-[16px]">trending_down</span>
+                    <span class="text-[10px] font-label-caps">DESDE O INÍCIO</span>
+                </div>
+            </div>
+            <div class="col-span-2 glass-card border border-white/10 rounded-xl p-5 flex justify-around items-center">
+
+                <div class="text-center flex flex-col items-center">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">ALTURA</span>
+                    <div class="flex items-end justify-center group">
+                        <input id="input-altura" type="number" step="0.01" placeholder="1.96" onchange="salvarMedidas()"
+                            class="w-14 bg-transparent text-center font-headline-md text-white border-b-2 border-transparent focus:border-primary-fixed outline-none p-0 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                        <span class="text-sm font-normal text-on-surface-variant ml-0.5 mb-1">m</span>
+                    </div>
+                </div>
+
+                <div class="w-[1px] h-10 bg-white/10"></div>
+
+                <div class="text-center flex flex-col items-center">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">PESO</span>
+                    <div class="flex items-end justify-center">
+                        <input id="input-peso" type="number" step="0.1" placeholder="0.0" onchange="salvarMedidas()"
+                            class="w-14 bg-transparent text-center font-headline-md text-white border-b-2 border-transparent focus:border-primary-fixed outline-none p-0 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                        <span class="text-sm font-normal text-on-surface-variant ml-0.5 mb-1">kg</span>
+                    </div>
+                </div>
+
+                <div class="w-[1px] h-10 bg-white/10"></div>
+
+                <div class="text-center flex flex-col items-center">
+                    <span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">META</span>
+                    <div class="flex items-end justify-center">
+                        <input id="input-meta" type="number" step="0.1" placeholder="0.0" onchange="salvarMedidas()"
+                            class="w-14 bg-transparent text-center font-headline-md text-white border-b-2 border-transparent focus:border-primary-fixed outline-none p-0 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                        <span class="text-sm font-normal text-on-surface-variant ml-0.5 mb-1">kg</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Weight Evolution Chart -->
+        
+<section class="glass-card border border-white/10 rounded-xl p-5 relative overflow-hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-label-caps text-label-caps text-white">Evolução do Peso</h3>
+            </div>
+            
+            <div id="chart-tooltip" class="absolute hidden flex-col items-center pointer-events-none z-20 transition-all duration-200" style="left: 0; top: 0;">
+                <div class="bg-surface-container-high border border-primary-fixed/30 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-lg flex flex-col items-center">
+                    <span id="tooltip-date" class="text-on-surface-variant font-label-caps text-[8px]"></span>
+                    <span id="tooltip-value" class="text-primary-fixed text-xs"></span>
+                </div>
+                <div class="w-[1px] h-20 bg-white/20 mt-1"></div>
+            </div>
+
+            <div class="relative h-48 w-full mt-4 flex" id="chart-container">
+                <div id="eixo-y-grafico" class="flex flex-col justify-between h-[130px] pr-2 text-[10px] font-label-caps text-on-surface-variant z-10 bg-[#131313]/50">
+                    </div>
+
+                <svg id="svg-grafico" class="w-full h-[150px] overflow-visible" viewbox="0 0 350 150" preserveAspectRatio="none">
+                    </svg>
+            </div>
+            
+            <div id="eixo-x-grafico" class="flex justify-between mt-2 font-label-caps text-[10px] text-on-surface-variant pl-8 pr-1">
+                </div>
+        </section>
+
+
+
+
+
+        <!-- Tips / Encouragement -->
+       <section class="bg-primary-container text-on-primary-fixed p-6 rounded-2xl relative overflow-hidden shadow-[0_0_30px_rgba(195,244,0,0.1)]">
+            <div class="relative z-10 flex items-center gap-4">
+                <div class="bg-black/10 p-3 rounded-full flex items-center justify-center">
+                    <span id="icone-meta" class="material-symbols-outlined text-3xl">bolt</span>
+                </div>
+                <div>
+                    <h4 id="titulo-meta" class="font-bold font-headline-md leading-tight">Quase no alvo!</h4>
+                    <p id="texto-meta" class="text-sm opacity-80">Carregando dados...</p>
+                </div>
+            </div>
+            <div class="absolute -right-4 -bottom-4 opacity-10">
+                <span class="material-symbols-outlined text-[120px] rotate-12">fitness_center</span>
+            </div>
+        </section>
+
+        <section class="mt-8 pt-8 border-t border-error/20">
+            <h3 class="font-headline-md text-sm text-error uppercase tracking-wider font-bold mb-4">Zona de Perigo</h3>
+            <button onclick="resetarDadosApp()"
+                class="w-full bg-error/10 text-error border border-error/20 py-4 rounded-xl font-bold tracking-widest hover:bg-error hover:text-white active:scale-95 transition-all flex justify-center items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">delete_forever</span>
+                APAGAR TODOS OS DADOS
+            </button>
+            <p class="text-[10px] text-on-surface-variant text-center mt-3">Isso irá remover seus treinos, simulados,
+                medidas e rotinas permanentemente.</p>
+        </section>
+
+
+      <!-- Backup provisorio de teste -->
+    
+<section class="space-y-4 px-container-padding-mobile mt-8">
+    <h3 class="font-headline-md text-white italic">CONFIGURAÇÕES DE DADOS</h3>
+    
+    <div class="glass-card p-6 rounded-xl border border-white/10 space-y-4">
+        <div>
+            <h4 class="text-white font-bold">Backup e Sincronização</h4>
+            <p class="text-[12px] text-on-surface-variant">Mantenha seus treinos salvos. Exporte do PC e importe no seu celular.</p>
+        </div>
+        
+        <div class="flex gap-3">
+            <button onclick="baixarBackup()" 
+                class="flex-1 bg-primary-fixed text-black py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
+                BAIXAR BACKUP
+            </button>
+            
+            <button onclick="document.getElementById('file-input').click()" 
+                class="flex-1 bg-secondary-fixed-dim/10 text-secondary-fixed-dim border border-secondary-fixed-dim/20 py-3 rounded-lg font-bold text-[12px] uppercase tracking-wider active:scale-95 transition-transform">
+                CARREGAR ARQUIVO
+            </button>
+            
+            <input type="file" id="file-input" class="hidden" accept=".json" onchange="carregarBackup(event)">
+        </div>
+    </div>
+</section>
+
+     <!-- Fim do Backup Provisório -->
+
+    </main>
+    <!-- Modal Editar Medidas (Hidden by default) -->
+    <div class="fixed inset-0 z-[100] hidden items-center justify-center p-container-padding-mobile" id="editModal">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleModal()"></div>
+        <div class="glass-card w-full max-w-md border border-primary-fixed/20 rounded-2xl p-6 relative z-10 space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="font-headline-md text-white">Editar Medidas</h3>
+                <button class="text-on-surface-variant hover:text-white" onclick="toggleModal()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label class="font-label-caps text-label-caps text-on-surface-variant">ALTURA (M)</label>
+                    <input id="modal-altura"
+                        class="w-full bg-surface-container-low border-b-2 border-primary-fixed text-white px-4 py-3 focus:outline-none focus:bg-surface-container-high transition-colors"
+                        step="0.01" type="number" placeholder="Ex: 1.96" />
+                </div>
+                <div class="space-y-2">
+                    <label class="font-label-caps text-label-caps text-on-surface-variant">PESO ATUAL (KG)</label>
+                    <input id="modal-peso"
+                        class="w-full bg-surface-container-low border-b-2 border-primary-fixed text-white px-4 py-3 focus:outline-none focus:bg-surface-container-high transition-colors"
+                        step="0.1" type="number" placeholder="Ex: 85.0" />
+                </div>
+                <div class="space-y-2">
+                    <label class="font-label-caps text-label-caps text-on-surface-variant">PESO META (KG)</label>
+                    <input id="modal-meta"
+                        class="w-full bg-surface-container-low border-b-2 border-primary-fixed text-white px-4 py-3 focus:outline-none focus:bg-surface-container-high transition-colors"
+                        step="0.1" type="number" placeholder="Ex: 80.0" />
+                </div>
+            </div>
+            <button
+                class="w-full bg-primary-fixed text-[#161e00] py-4 rounded-xl font-bold tracking-widest hover:scale-[0.98] transition-transform"
+                onclick="salvarModalMedidas()">
+                SALVAR E ATUALIZAR
+            </button>
+        </div>
+    </div>
+    <!-- BottomNavBar -->
+ <nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+
+    <script>
+        // Quando a página abre, puxa tudo da memória (Nome e Medidas)
+        document.addEventListener('DOMContentLoaded', () => {
+            const nomeSalvo = localStorage.getItem('nomeUsuario');
+            if (nomeSalvo) document.getElementById('input-nome-perfil').value = nomeSalvo;
+
+            const alturaSalva = localStorage.getItem('usuarioAltura') || ''; // Padrão da sua altura
+            const pesoSalvo = localStorage.getItem('usuarioPeso') || '';
+            const metaSalva = localStorage.getItem('usuarioMeta') || '';
+
+            // Preenche os campos principais da tela
+            document.getElementById('input-altura').value = alturaSalva;
+            document.getElementById('input-peso').value = pesoSalvo;
+            document.getElementById('input-meta').value = metaSalva;
+
+            // Preenche o modal também
+            document.getElementById('modal-altura').value = alturaSalva;
+            document.getElementById('modal-peso').value = pesoSalvo;
+            document.getElementById('modal-meta').value = metaSalva;
+
+            calcularProgresso();
+        });
+
+        // 8. Resetar todo o aplicativo
+        function resetarDadosApp() {
+            // Primeira confirmação
+            const confirmacao1 = confirm("⚠️ ATENÇÃO: Tem certeza que deseja apagar TODOS os dados do aplicativo?");
+
+            if (confirmacao1) {
+                // Segunda confirmação de segurança
+                const confirmacao2 = confirm("Isso vai apagar seus treinos, rotina, simulados e perfil. Esta ação NÃO pode ser desfeita. Confirmar?");
+
+                if (confirmacao2) {
+                    // O comando mágico que limpa a memória inteira do navegador para esse site
+                    localStorage.clear();
+
+                    alert("Aplicativo resetado com sucesso.");
+
+                    // Recarrega a página ou joga para o início
+                    window.location.href = 'index.html';
+                }
+            }
+        }
+
+
+
+
+        // 1. Abre e fecha o modal
+        function toggleModal() {
+            const modal = document.getElementById('editModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // 2. Muda a Foto
+        function previewFile(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => document.getElementById('profile-img').src = e.target.result;
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // 3. Salva o Nome
+        function salvarNomePerfil() {
+            const nomeDigitado = document.getElementById('input-nome-perfil').value.trim();
+            if (nomeDigitado) localStorage.setItem('nomeUsuario', nomeDigitado);
+        }
+
+      // 4. Salva quando digita direto na tela
+        function salvarMedidas() {
+            const altura = document.getElementById('input-altura').value;
+            const peso = document.getElementById('input-peso').value;
+            const meta = document.getElementById('input-meta').value;
+
+            if (altura) localStorage.setItem('usuarioAltura', altura);
+            if (peso) localStorage.setItem('usuarioPeso', peso);
+            if (meta) localStorage.setItem('usuarioMeta', meta);
+
+            // Sincroniza o modal escondido
+            document.getElementById('modal-altura').value = altura;
+            document.getElementById('modal-peso').value = peso;
+            document.getElementById('modal-meta').value = meta;
+
+            calcularProgresso();
+            
+            // ATUALIZA O GRÁFICO DINÂMICO AQUI
+            if (peso) registrarPesoHistorico(peso);
+        }
+
+        // 5. Salva quando usa o botão do Modal
+        function salvarModalMedidas() {
+            const altura = document.getElementById('modal-altura').value;
+            const peso = document.getElementById('modal-peso').value;
+            const meta = document.getElementById('modal-meta').value;
+
+            if (altura) localStorage.setItem('usuarioAltura', altura);
+            if (peso) localStorage.setItem('usuarioPeso', peso);
+            if (meta) localStorage.setItem('usuarioMeta', meta);
+
+            // Sincroniza a tela principal
+            document.getElementById('input-altura').value = altura;
+            document.getElementById('input-peso').value = peso;
+            document.getElementById('input-meta').value = meta;
+
+            calcularProgresso();
+            
+            // ATUALIZA O GRÁFICO DINÂMICO AQUI
+            if (peso) registrarPesoHistorico(peso);
+            
+            toggleModal();
+        }
+
+       // 6. Atualiza o peso na seção "Peso do Dia"
+        function atualizarPeso() {
+            const novoPeso = document.getElementById('peso-dia').value;
+            if (!novoPeso) return;
+
+            // Salva na memória e atualiza as telas
+            localStorage.setItem('usuarioPeso', novoPeso);
+            document.getElementById('input-peso').value = novoPeso;
+            document.getElementById('modal-peso').value = novoPeso;
+
+            // Recalcula o IMC e Variação
+            calcularProgresso();
+            
+            // ENVIA O DADO PARA O GRÁFICO DINÂMICO AQUI:
+            registrarPesoHistorico(novoPeso);
+            
+            // Limpa o input
+            document.getElementById('peso-dia').value = ''; 
+        }
+
+        // 7. Calcula IMC Dinâmico e Variação de Peso Real
+      // 7. Calcula IMC Dinâmico, Variação e Card de Meta
+        function calcularProgresso() {
+            const peso = parseFloat(localStorage.getItem('usuarioPeso')) || 0;
+            const altura = parseFloat(localStorage.getItem('usuarioAltura')) || 1.96;
+            const meta = parseFloat(localStorage.getItem('usuarioMeta')) || 0;
+
+            if (peso > 0 && altura > 0) {
+                // 1. Calcula o IMC
+                const imc = (peso / (altura * altura)).toFixed(1);
+                document.getElementById('imc-display').innerText = imc;
+
+                // 2. Calcula a Variação "Desde o Início"
+                const historico = JSON.parse(localStorage.getItem('pesoHistorico')) || [];
+                if (historico.length > 0) {
+                    const pesoInicial = historico[0].peso;
+                    const diff = (peso - pesoInicial).toFixed(1);
+                    if (diff > 0) {
+                        document.getElementById('var-display').innerText = `+${diff}kg`;
+                    } else if (diff < 0) {
+                        document.getElementById('var-display').innerText = `${diff}kg`;
+                    } else {
+                        document.getElementById('var-display').innerText = `0.0kg`;
+                    }
+                } else {
+                    document.getElementById('var-display').innerText = '0.0kg';
+                }
+
+                // 3. CARD DE META INTELIGENTE
+                const tituloMeta = document.getElementById('titulo-meta');
+                const textoMeta = document.getElementById('texto-meta');
+                const iconeMeta = document.getElementById('icone-meta');
+
+                if (meta > 0) {
+                    // Calcula a diferença absoluta
+                    const diferencaMeta = Math.abs(peso - meta).toFixed(1);
+
+                    if (diferencaMeta == 0.0) {
+                        tituloMeta.innerText = "Objetivo Alcançado!";
+                        textoMeta.innerText = "Sensacional! Você atingiu exatamente a sua meta de peso.";
+                        iconeMeta.innerText = "emoji_events"; // Ícone de troféu
+                    } else if (diferencaMeta <= 2.0) {
+                        tituloMeta.innerText = "Reta final!";
+                        textoMeta.innerText = `Faltam apenas ${diferencaMeta}kg para bater a meta. Não desanime agora!`;
+                        iconeMeta.innerText = "local_fire_department"; // Ícone de fogo
+                    } else {
+                        tituloMeta.innerText = "Foco na Missão!";
+                        textoMeta.innerText = `Você está a ${diferencaMeta}kg do seu peso ideal planejado. Mantenha o ritmo!`;
+                        iconeMeta.innerText = "bolt"; // Ícone de raio
+                    }
+                } else {
+                    tituloMeta.innerText = "Defina uma Meta";
+                    textoMeta.innerText = "Adicione um 'Peso Meta' nas configurações para acompanhar seu alvo.";
+                    iconeMeta.innerText = "flag"; 
+                }
+
+            } else {
+                document.getElementById('imc-display').innerText = '--';
+                document.getElementById('var-display').innerText = '--';
+                
+                document.getElementById('titulo-meta').innerText = "Vamos começar?";
+                document.getElementById('texto-meta').innerText = "Insira o seu peso atual e sua meta para ativar o rastreamento.";
+                document.getElementById('icone-meta').innerText = "start";
+            }
+        }
+
+
+
+
+        // --- FUNÇÕES DO GRÁFICO INTERATIVO ---
+        const tooltip = document.getElementById('chart-tooltip');
+        const tooltipDate = document.getElementById('tooltip-date');
+        const tooltipValue = document.getElementById('tooltip-value');
+        const chartContainer = document.getElementById('chart-container');
+
+        function showTooltip(event, dateLabel, weightValue) {
+            // Preenche os dados
+            tooltipDate.innerText = dateLabel;
+            tooltipValue.innerText = weightValue;
+            
+            // Calcula a posição do mouse/dedo relativa ao gráfico
+            const rect = chartContainer.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            // Posiciona o tooltip um pouco acima do ponto
+            tooltip.style.left = `${x - 30}px`; 
+            tooltip.style.top = `${y - 45}px`;
+            
+            // Mostra o elemento
+            tooltip.classList.remove('hidden');
+            tooltip.classList.add('flex');
+        }
+
+        function hideTooltip() {
+            tooltip.classList.add('hidden');
+            tooltip.classList.remove('flex');
+        }
+
+
+        // --- MOTOR DO GRÁFICO DINÂMICO ---
+
+        // Grava o peso no histórico com a data atual
+        function registrarPesoHistorico(peso) {
+            if(!peso) return;
+            let historico = JSON.parse(localStorage.getItem('pesoHistorico')) || [];
+            
+            // Pega a data de hoje (Ex: "11 Jun")
+            const dataHoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.','');
+            
+            // Se já se pesou hoje, só atualiza o valor. Se não, adiciona na lista.
+            const indexHoje = historico.findIndex(item => item.data === dataHoje);
+            if(indexHoje !== -1) {
+                historico[indexHoje].peso = parseFloat(peso);
+            } else {
+                historico.push({ data: dataHoje, peso: parseFloat(peso) });
+                // Mantém apenas os últimos 5 registros para o gráfico não embolar
+                if(historico.length > 5) historico.shift(); 
+            }
+            
+            localStorage.setItem('pesoHistorico', JSON.stringify(historico));
+            desenharGrafico();
+        }
+
+        // Faz os cálculos e desenha o gráfico em tela
+        function desenharGrafico() {
+            const historico = JSON.parse(localStorage.getItem('pesoHistorico')) || [];
+            const svg = document.getElementById('svg-grafico');
+            const eixoX = document.getElementById('eixo-x-grafico');
+            const eixoY = document.getElementById('eixo-y-grafico');
+
+            if (historico.length === 0) {
+                svg.innerHTML = ''; eixoX.innerHTML = ''; eixoY.innerHTML = '';
+                return;
+            }
+
+            // Acha o maior e menor peso para criar a escala perfeita
+            const pesos = historico.map(h => h.peso);
+            const minPeso = Math.floor(Math.min(...pesos)) - 1;
+            const maxPeso = Math.ceil(Math.max(...pesos)) + 1;
+            const range = maxPeso - minPeso || 1;
+
+            // Desenha as medidas no canto esquerdo
+            eixoY.innerHTML = `
+                <span>${maxPeso} kg</span>
+                <span>${((maxPeso + minPeso)/2).toFixed(1)} kg</span>
+                <span>${minPeso} kg</span>
+            `;
+
+            const w = 350; // Largura do SVG
+            const pX = historico.length === 1 ? 0 : w / (historico.length - 1); // Distância entre os pontos
+            
+            let pathD = `M0,150 `; // Começa lá embaixo para o preenchimento azul
+            let lineD = ""; // Caminho da linha neon
+            let circlesHTML = "";
+            let labelsXHTML = "";
+
+            historico.forEach((ponto, i) => {
+                // Se só tem 1 dado, põe no meio. Se tem mais, divide o espaço.
+                const x = historico.length === 1 ? w/2 : i * pX; 
+                // Normaliza o Y (converte o peso para a altura da tela)
+                const normalizedY = (ponto.peso - minPeso) / range; 
+                const y = 130 - (normalizedY * 110); 
+
+                // Lógica para curvar as linhas
+                if(i === 0) {
+                    pathD += `L${x},${y} `;
+                    lineD += `M${x},${y} `;
+                } else {
+                    const prevX = (i-1)*pX;
+                    const prevY = 130 - (((historico[i-1].peso - minPeso) / range) * 110);
+                    const cpX1 = prevX + (x - prevX)/2; // Ponto de controle para curvar suavemente
+                    pathD += `C${cpX1},${prevY} ${cpX1},${y} ${x},${y} `;
+                    lineD += `C${cpX1},${prevY} ${cpX1},${y} ${x},${y} `;
+                }
+
+                // Desenha a bolinha e o gatilho do tooltip
+                const isLast = i === historico.length - 1;
+                circlesHTML += `
+                    <circle cx="${x}" cy="${y}" r="20" fill="transparent" class="cursor-pointer" onmouseover="showTooltip(event, '${ponto.data}', '${ponto.peso} kg')" onmouseout="hideTooltip()" ontouchstart="showTooltip(event, '${ponto.data}', '${ponto.peso} kg')" ontouchend="hideTooltip()"></circle>
+                    <circle cx="${x}" cy="${y}" fill="${isLast ? '#c3f400' : '#00dbe9'}" r="${isLast ? '4' : '3'}" class="pointer-events-none"></circle>
+                    ${isLast ? `<circle cx="${x}" cy="${y}" fill="transparent" stroke="#c3f400" stroke-width="2" r="7" class="animate-pulse pointer-events-none"></circle>` : ''}
+                `;
+
+                // Desenha os meses na parte de baixo
+                labelsXHTML += `<span class="${isLast ? 'text-primary-fixed' : ''}">${ponto.data}</span>`;
+            });
+
+            pathD += `L${historico.length === 1 ? w/2 : w},150 Z`; // Fecha o preenchimento
+
+            svg.innerHTML = `
+                <defs>
+                    <linearGradient id="glowGradient" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#00dbe9" stop-opacity="0.3"></stop>
+                        <stop offset="100%" stop-color="#00dbe9" stop-opacity="0"></stop>
+                    </linearGradient>
+                </defs>
+                <line stroke="rgba(255,255,255,0.05)" stroke-width="1" x1="0" x2="350" y1="20" y2="20"></line>
+                <line stroke="rgba(255,255,255,0.05)" stroke-width="1" x1="0" x2="350" y1="75" y2="75"></line>
+                <line stroke="rgba(255,255,255,0.05)" stroke-width="1" x1="0" x2="350" y1="130" y2="130"></line>
+                <path d="${pathD}" fill="url(#glowGradient)"></path>
+                <path d="${lineD}" fill="none" stroke="#00dbe9" stroke-linecap="round" stroke-width="2.5"></path>
+                ${circlesHTML}
+            `;
+
+            eixoX.innerHTML = labelsXHTML;
+        }
+
+
+
+    </script>
+
+
+<script>
+    // 1. Gera o arquivo .json com seus dados atuais
+   function baixarBackup() {
+    // Cria um objeto vazio
+    const backupCompleto = {};
+
+    // Percorre todas as chaves salvas no localStorage do seu navegador
+    for (let i = 0; i < localStorage.length; i++) {
+        const chave = localStorage.key(i);
+        backupCompleto[chave] = localStorage.getItem(chave);
+    }
+    
+    // Converte para JSON e baixa
+    const blob = new Blob([JSON.stringify(backupCompleto)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'fitflow_backup_completo.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+    // 2. Lê o arquivo e atualiza o celular
+    function carregarBackup(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const backup = JSON.parse(e.target.result);
+            
+            // Limpa o localStorage atual do celular para evitar conflitos
+            localStorage.clear();
+            
+            // Grava tudo o que veio no arquivo
+            Object.keys(backup).forEach(chave => {
+                localStorage.setItem(chave, backup[chave]);
+            });
+            
+            alert("Backup completo carregado! Seus dados pessoais e treinos foram sincronizados.");
+            window.location.reload();
+        } catch (err) {
+            alert("Erro ao ler o arquivo de backup.");
+        }
+    };
+    reader.readAsText(file);
+}
+</script>
+
+
+
+
+</body>
+
+</html>

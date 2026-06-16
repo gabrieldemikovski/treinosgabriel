@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Novo Treino | Elite Performance</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-active {
+            background: #c3f400 !important;
+            color: #161e00 !important;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body class="pb-24 font-body-md">
+
+    <!-- HEADER PADRÃO -->
+    <header
+        class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-5 h-16 shadow-sm">
+        <div class="flex items-center gap-3">
+            <a href="treino.html"
+                class="material-symbols-outlined text-white hover:text-[#c3f400] transition-colors active:scale-90">arrow_back</a>
+
+            <h1 id="titulo-header" class="font-bold text-lg text-white">NOVO TREINO</h1>
+        </div>
+    </header>
+
+    <main class="mt-20 px-5 space-y-8 max-w-2xl mx-auto">
+        <!-- Título -->
+        <section>
+            <h2 id="titulo-pagina" class="font-headline-md text-headline-md text-white">Configurar Sequência</h2>
+            <p class="text-on-surface-variant text-sm">Defina os exercícios do seu novo treino.</p>
+        </section>
+
+        <!-- Nome do Treino -->
+        <section class="space-y-2">
+            <label class="text-[10px] font-label-caps text-[#c4c9ac] uppercase tracking-widest">Nome do Treino</label>
+            <input id="nome-treino" type="text" placeholder="Ex: Força A"
+                class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-[#c3f400] outline-none py-3 px-4 text-white font-bold transition-all">
+
+        </section>
+
+
+        <section class="space-y-2">
+            <label class="text-[10px] font-label-caps text-[#c4c9ac] uppercase tracking-widest">Tipo de Treino</label>
+            <select id="tipo-treino"
+                class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-[#c3f400] outline-none py-3 px-4 text-white font-bold transition-all">
+                <option value="Fixo">Fixo</option>
+                <option value="Extra">Extra</option>
+            </select>
+        </section>
+
+      <section class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-white">Exercícios</h3>
+            </div>
+
+            <div id="lista-exercicios" class="space-y-3">
+                </div>
+
+            <button type="button" onclick="adicionarEx()"
+                class="w-full mt-4 border-2 border-dashed border-[#c3f400]/50 text-[#c3f400] hover:bg-[#c3f400]/10 hover:border-[#c3f400] active:scale-95 text-xs font-bold uppercase tracking-wider py-4 rounded-xl flex items-center justify-center gap-2 transition-all">
+                <span class="material-symbols-outlined text-lg">add_circle</span> ADICIONAR NOVO EXERCÍCIO
+            </button>
+        </section>
+
+            <div id="lista-exercicios" class="space-y-3">
+                <!-- Exercícios serão inseridos aqui -->
+            </div>
+        </section>
+
+        <!-- Botão Salvar -->
+        <button id="btn-salvar" type="button" onclick="salvarTreino()"
+            class="w-full py-4 bg-[#c3f400] text-[#161e00] font-bold rounded-xl mt-8 transition-transform active:scale-95">
+            SALVAR TREINO
+        </button>
+        
+        <script>
+            let indiceEdicao = null;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+
+                if (urlParams.has('edit')) {
+                    indiceEdicao = urlParams.get('edit');
+                    prepararModoEdicao(indiceEdicao);
+                } else {
+                    adicionarEx(); // Criação: já adiciona um campo de exercício vazio
+                }
+            });
+
+            function prepararModoEdicao(index) {
+                document.getElementById('titulo-header').innerText = "EDITAR TREINO";
+                document.getElementById('titulo-pagina').innerText = "Editar Sequência";
+                document.getElementById('btn-salvar').innerText = "SALVAR ALTERAÇÕES";
+
+                const treinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+                const treinoSelecionado = treinos[index];
+
+                if (treinoSelecionado) {
+                    document.getElementById('nome-treino').value = treinoSelecionado.nome;
+
+                    // --- ESTA É A LINHA QUE VOCÊ PRECISA ADICIONAR ---
+                    // Ela busca o seletor e coloca o valor que estava salvo (ou 'Fixo' se não houver)
+                    document.getElementById('tipo-treino').value = treinoSelecionado.tipo || 'Fixo';
+                    // --------------------------------------------------
+
+                    if (treinoSelecionado.exercicios && treinoSelecionado.exercicios.length > 0) {
+                        treinoSelecionado.exercicios.forEach(ex => adicionarEx(ex.nome, ex.series, ex.repeticoes));
+                    } else {
+                        adicionarEx();
+                    }
+                }
+            }
+
+            function adicionarEx(nome = '', series = '', repeticoes = '') {
+                const container = document.getElementById('lista-exercicios');
+                const div = document.createElement('div');
+                div.className = 'glass-card rounded-xl p-4 space-y-3 border border-white/5';
+
+                div.innerHTML = `
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-label-caps uppercase tracking-widest text-[#c4c9ac]">Exercício</span>
+                <button type="button" onclick="this.closest('.glass-card').remove()" class="text-[#c4c9ac] hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+            </div>
+            
+            <input type="text" placeholder="Nome do exercício" value="${nome}" class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-[#c3f400] outline-none py-3 px-4 text-white font-bold transition-all">
+            
+            <div class="grid grid-cols-2 gap-3">
+                <input type="number" placeholder="Séries" value="${series}" class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-[#c3f400] outline-none py-3 px-4 text-white font-bold transition-all">
+                
+                <div class="relative w-full">
+                    <input type="text" placeholder="Repetições" value="${repeticoes}" class="w-full bg-[#1c1b1b] border-b-2 border-[#353534] focus:border-[#c3f400] outline-none py-3 pl-4 pr-14 text-white font-bold transition-all">
+                    
+                    <button type="button" onclick="this.previousElementSibling.value = 'MÁXIMO'" class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#c3f400]/10 text-[#c3f400] px-2 py-1 rounded text-[10px] font-bold hover:bg-[#c3f400] hover:text-[#131313] transition-colors">
+                        MÁX
+                    </button>
+                </div>
+            </div>
+        `;
+
+                container.appendChild(div);
+            }
+
+
+
+            function salvarTreino() {
+                const nomeTreino = document.getElementById('nome-treino').value.trim();
+                const tipoTreino = document.getElementById('tipo-treino').value; // Lê o seletor novo
+
+                if (!nomeTreino) return alert("Dê um nome ao treino.");
+
+                const exercicios = [];
+                document.querySelectorAll('#lista-exercicios > div').forEach(div => {
+                    const inputs = div.querySelectorAll('input');
+                    if (inputs[0].value.trim()) {
+                        exercicios.push({
+                            nome: inputs[0].value.trim(),
+                            series: inputs[1].value,
+                            repeticoes: inputs[2].value
+                        });
+                    }
+                });
+
+                const novoTreino = {
+                    nome: nomeTreino,
+                    tipo: tipoTreino, // Salva 'Fixo' ou 'Extra'
+                    exercicios: exercicios
+                };
+
+                let listaTreinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+
+                if (indiceEdicao !== null) {
+                    listaTreinos[indiceEdicao] = novoTreino;
+                } else {
+                    listaTreinos.push(novoTreino);
+                }
+
+                localStorage.setItem('meusTreinos', JSON.stringify(listaTreinos));
+                window.location.href = 'treino.html';
+            }
+
+        </script>
+</body>
+
+</html>

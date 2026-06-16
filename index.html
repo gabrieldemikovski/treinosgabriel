@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FITFLOW - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+<!--referencia para app instalar manifest-->
+
+
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!--fim da referencia-->
+
+
+    <script id="tailwind-config">
+        
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-container": "#656464",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed-dim": "#abd600",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#002022",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#8e9379",
+                        "secondary-container": "#00eefc",
+                        "surface-tint": "#abd600",
+                        "on-primary": "#283500",
+                        "primary-fixed": "#c3f400",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-primary-container": "#556d00",
+                        "surface-dim": "#131313",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "background": "#131313",
+                        "on-tertiary": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#d3fbff",
+                        "primary": "#ffffff",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary-container": "#00686f",
+                        "inverse-primary": "#506600",
+                        "primary-container": "#c3f400",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary": "#00363a",
+                        "outline-variant": "#444933",
+                        "tertiary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#e5e2e1",
+                        "tertiary-container": "#e5e2e1",
+                        "on-primary-fixed-variant": "#3c4d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px",
+                        "stack-gap-sm": "0.5rem",
+                        "stack-gap-lg": "2rem",
+                        "container-padding-mobile": "1.25rem",
+                        "stack-gap-md": "1rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "stat-xl": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"],
+                        "display-lg-mobile": ["Archivo Narrow"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "stat-xl": ["40px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(195, 244, 0, 0.1);
+        }
+
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(195, 244, 0, 0.15);
+        }
+
+        .progress-ring {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        body {
+            background-color: #0F0F0F;
+            color: #e5e2e1;
+            min-height: max(884px, 100dvh);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body class="font-body-md text-body-md pb-24">
+    <header
+        class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 h-16 flex justify-between items-center px-container-padding-mobile">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+                <img alt="User Profile" data-alt="A close-up professional portrait of a fit athlete"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwaX7p_vUF2E1prxMjOwYNoGuyVZp_XRJS1EBgeWPXW67HTNuif0TIQ532uc1fFmcfM2IctcLQQImtkMxQw28hLaNanUMPurje39p3IHtb2Xn2IhZwnHr9UhqbOSP5WMoSvxjdM65F0tyPMPdH2rc7rOIy9buD2hWSHQ3figois2fxZAnjUXc4jQIAh9xZzF7h9NgVBzqg1SJPLA1sDnlAbVNusTyudVxScWsJh3TpAxvk_XixI6C3QdNVrUQn3ZbDGWgfB5ZHHP0" />
+            </div>
+            <div>
+                <p class="font-label-caps text-label-caps text-on-surface-variant">BEM-VINDO,</p>
+                <h1 id="nome-usuario-dashboard"
+                    class="font-display-lg-mobile text-[18px] leading-tight font-black text-primary-fixed italic">ATLETA
+                </h1>
+                </h1>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <span
+                class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed transition-colors cursor-pointer"
+                data-icon="notifications">notifications</span>
+            <div class="font-display-lg-mobile text-display-lg-mobile italic font-black text-primary-fixed">FITFLOW
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 px-container-padding-mobile space-y-stack-gap-lg">
+    
+        
+    <section class="space-y-4">
+    <div class="glass-card rounded-xl p-4">
+        <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">ATIVIDADE SEMANAL</h3>
+        
+        <div class="grid grid-cols-7 gap-1 text-center" id="container-semanal">
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-0" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">D</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-1" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-2" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">T</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-3" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-4" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">Q</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-5" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div id="circle-6" class="w-8 h-8 rounded-full border border-outline/30 flex items-center justify-center transition-all"></div>
+                <span class="font-label-caps text-[10px] text-on-surface-variant">S</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="space-y-4" id="secao-rotina">
+        <div class="flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-white italic">TREINO DE HOJE</h3>
+            <button onclick="abrirModalRotina()"
+                class="material-symbols-outlined text-primary-fixed hover:bg-white/5 p-1 rounded-full transition-colors">edit_calendar</button>
+        </div>
+
+        <div
+            class="relative overflow-hidden rounded-xl glass-card p-6 glow-primary min-h-[200px] flex flex-col justify-center">
+
+            <div id="estado-vazio-rotina" class="text-center space-y-4">
+                <div
+                    class="w-16 h-16 bg-[#1c1b1b] rounded-full flex items-center justify-center mx-auto mb-2 border border-white/5">
+                    <span class="material-symbols-outlined text-[#c4c9ac] text-3xl">calendar_add_on</span>
+                </div>
+                <h3 class="text-white font-bold">Nenhuma rotina definida</h3>
+                <p class="text-[12px] text-on-surface-variant">Organize sua semana com seus treinos, simulados e
+                    dias de descanso.</p>
+
+                <button onclick="abrirModalRotina()"
+                    class="w-full py-3 bg-primary-fixed/10 text-primary-fixed border border-primary-fixed/20 font-bold rounded-xl mt-2 transition-transform active:scale-95 flex items-center justify-center gap-2">
+                    CRIAR ROTINA DE TREINOS
+                </button>
+            </div>
+
+            <div id="treino-do-dia" class="hidden relative z-10 w-full"></div>
+        </div>
+    </section>
+
+
+    <section class="glass-card p-6 rounded-xl border border-secondary-fixed/20">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="show_chart">show_chart</span>
+            <h3 class="font-headline-md text-headline-md text-white italic">EVOLUÇÃO SEMANAL</h3>
+        </div>
+        <div class="h-32 flex items-end justify-between gap-2 px-2">
+            <div class="w-full bg-primary-fixed/10 rounded-t h-[40%] hover:bg-primary-fixed transition-colors">
+            </div>
+            <div class="w-full bg-primary-fixed/10 rounded-t h-[60%] hover:bg-primary-fixed transition-colors">
+            </div>
+            <div class="w-full bg-primary-fixed/10 rounded-t h-[30%] hover:bg-primary-fixed transition-colors">
+            </div>
+            <div class="w-full bg-primary-fixed/10 rounded-t h-[80%] hover:bg-primary-fixed transition-colors">
+            </div>
+            <div class="w-full bg-primary-fixed/10 rounded-t h-[95%] hover:bg-primary-fixed transition-colors">
+            </div>
+            <div
+                class="w-full bg-primary-fixed/20 rounded-t h-[50%] hover:bg-primary-fixed transition-colors border-t-2 border-primary-fixed shadow-[0_0_10px_rgba(171,214,0,0.3)]">
+            </div>
+            <div class="w-full bg-surface-container-highest rounded-t h-[10%]"></div>
+        </div>
+        <div class="flex justify-between mt-2 px-2">
+            <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
+            <span class="font-label-caps text-[8px] text-on-surface-variant">T</span>
+            <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
+            <span class="font-label-caps text-[8px] text-on-surface-variant">Q</span>
+            <span class="font-label-caps text-[8px] text-on-surface-variant">S</span>
+            <span class="font-label-caps text-[8px] text-primary-fixed">S</span>
+            <span class="font-label-caps text-[8px] text-on-surface-variant">D</span>
+        </div>
+    </section>
+    </main>
+
+   <nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+    <div id="modal-rotina"
+        class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md hidden flex-col justify-end md:justify-center">
+        <div
+            class="bg-[#131313] border-t md:border border-white/10 rounded-t-3xl md:rounded-3xl p-5 space-y-6 max-h-[85vh] overflow-y-auto w-full max-w-3xl mx-auto pb-safe">
+            <div class="flex justify-between items-center sticky top-0 bg-[#131313] z-10 py-2 border-b border-white/5">
+                <div>
+                    <h2 class="text-white font-bold text-xl italic uppercase">Planejamento</h2>
+                    <p class="text-xs text-on-surface-variant">Selecione a atividade de cada dia.</p>
+                </div>
+                <button onclick="fecharModalRotina()"
+                    class="text-on-surface-variant p-2 bg-surface-container rounded-full hover:text-white transition-colors"><span
+                        class="material-symbols-outlined">close</span></button>
+            </div>
+
+            <div id="lista-dias-semana" class="space-y-4">
+            </div>
+
+            <div class="sticky bottom-0 bg-[#131313] pt-4 pb-2 z-10">
+                <button onclick="salvarRotina()"
+                    class="w-full py-4 bg-primary-fixed text-[#161e00] font-bold rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2 text-[14px]">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">save</span>
+                    SALVAR PLANEJAMENTO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
+        let selecoesSemana = {}; // Agora guarda listas (arrays) de escolhas
+
+        // 1. ABRIR MODAL
+        function abrirModalRotina() {
+            document.getElementById('modal-rotina').classList.remove('hidden');
+            document.getElementById('modal-rotina').classList.add('flex');
+
+            // Carrega o que já estava salvo na memória
+            const rotinaSalva = JSON.parse(localStorage.getItem('minhaRotina')) || {};
+            for (let i = 0; i < 7; i++) {
+                if (rotinaSalva[i] && !Array.isArray(rotinaSalva[i])) {
+                    selecoesSemana[i] = [rotinaSalva[i]];
+                } else {
+                    selecoesSemana[i] = rotinaSalva[i] || [];
+                }
+            }
+
+            popularCardsDias();
+        }
+
+        // 2. FECHAR MODAL
+        function fecharModalRotina() {
+            document.getElementById('modal-rotina').classList.add('hidden');
+            document.getElementById('modal-rotina').classList.remove('flex');
+        }
+
+        // 3. LÓGICA DE MÚLTIPLA SELEÇÃO INTELIGENTE
+        function selecionarOpcao(diaIndex, valor) {
+            let selecoesDoDia = selecoesSemana[diaIndex] || [];
+
+            if (valor === 'Descanso') {
+                if (selecoesDoDia.includes('Descanso')) {
+                    selecoesSemana[diaIndex] = [];
+                } else {
+                    selecoesSemana[diaIndex] = ['Descanso'];
+                }
+            } else {
+                selecoesDoDia = selecoesDoDia.filter(item => item !== 'Descanso');
+
+                if (selecoesDoDia.includes(valor)) {
+                    selecoesSemana[diaIndex] = selecoesDoDia.filter(item => item !== valor);
+                } else {
+                    selecoesDoDia.push(valor);
+                    selecoesSemana[diaIndex] = selecoesDoDia;
+                }
+            }
+            popularCardsDias();
+        }
+
+        // 4. DESENHA OS BOTÕES DENTRO DO MODAL
+        function popularCardsDias() {
+            const container = document.getElementById('lista-dias-semana');
+            container.innerHTML = '';
+
+            const treinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+
+            diasSemana.forEach((dia, index) => {
+                const selecoesDoDia = selecoesSemana[index] || [];
+                const temAtividade = selecoesDoDia.length > 0;
+
+                let statusTexto = 'Pendente';
+                if (temAtividade) {
+                    statusTexto = selecoesDoDia.includes('Descanso') ? 'Dia de Descanso' : `${selecoesDoDia.length} Atividade(s)`;
+                }
+                const corStatus = temAtividade ? 'text-primary-fixed opacity-100' : 'text-on-surface-variant opacity-60';
+
+                const isSimuladoAtivo = selecoesDoDia.includes('Simulado TAF');
+                const isDescansoAtivo = selecoesDoDia.includes('Descanso');
+
+                let botoesHTML = `
+                    <button type="button" onclick="selecionarOpcao(${index}, 'Simulado TAF')" 
+                        class="flex-1 min-w-[140px] flex items-center justify-center gap-2 p-3 rounded-lg border transition-colors ${isSimuladoAtivo ? 'bg-primary-fixed/10 border-primary-fixed text-primary-fixed' : 'border-white/5 bg-[#201f1f] text-on-surface-variant hover:border-white/20'}">
+                        <span class="material-symbols-outlined text-[18px]">analytics</span>
+                        <span class="font-bold text-[11px] tracking-wider uppercase">Simulado TAF</span>
+                    </button>
+                    
+                    <button type="button" onclick="selecionarOpcao(${index}, 'Descanso')" 
+                        class="flex-1 min-w-[140px] flex items-center justify-center gap-2 p-3 rounded-lg border transition-colors ${isDescansoAtivo ? 'bg-secondary-fixed-dim/10 border-secondary-fixed-dim text-secondary-fixed-dim' : 'border-white/5 bg-[#201f1f] text-on-surface-variant hover:border-white/20'}">
+                        <span class="material-symbols-outlined text-[18px]">bedtime</span>
+                        <span class="font-bold text-[11px] tracking-wider uppercase">Descanso</span>
+                    </button>
+                `;
+
+                treinos.forEach(t => {
+                    const isTreinoAtivo = selecoesDoDia.includes(t.nome);
+                    const nomeSeguro = t.nome.replace(/'/g, "\\'");
+                    botoesHTML += `
+                        <button type="button" onclick="selecionarOpcao(${index}, '${nomeSeguro}')" 
+                            class="flex-1 min-w-[140px] flex items-center justify-center gap-2 p-3 rounded-lg border transition-colors ${isTreinoAtivo ? 'bg-primary-fixed border-primary-fixed text-[#161e00]' : 'border-white/5 bg-[#201f1f] text-on-surface-variant hover:border-white/20'}">
+                            <span class="material-symbols-outlined text-[18px]">fitness_center</span>
+                            <span class="font-bold text-[11px] tracking-wider uppercase">${t.nome}</span>
+                        </button>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="bg-[#1c1b1b] p-5 rounded-2xl border border-white/5 flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-headline-md text-primary-fixed italic uppercase text-[16px]">${dia}</h4>
+                                <p class="text-[12px] ${corStatus} italic">${statusTexto}</p>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant opacity-40">calendar_month</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            ${botoesHTML}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // 5. O BOTÃO DE SALVAR!
+        function salvarRotina() {
+            localStorage.setItem('minhaRotina', JSON.stringify(selecoesSemana));
+            fecharModalRotina();
+            carregarTreinoDeHoje();
+        }
+
+        // NOVO: Função que ativa o treino selecionado e abre a tela de execução
+        function iniciarTreinoPeloNome(nomeTreino) {
+            const meusTreinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+
+            // Procura o treino completo correspondente ao nome selecionado
+            const treinoSelecionado = meusTreinos.find(t => t.nome === nomeTreino);
+
+            if (treinoSelecionado) {
+                // Guarda o treino completo na memória ativa de execução
+                localStorage.setItem('treinoEmExecucao', JSON.stringify(treinoSelecionado));
+                window.location.href = 'execucao-treino.html'; // Garanta que o nome do seu arquivo HTML é este
+            } else {
+                // Se o treino foi planejado mas não tem exercícios, envia um esqueleto básico
+                const treinoGenerico = { nome: nomeTreino, exercicios: [] };
+                localStorage.setItem('treinoEmExecucao', JSON.stringify(treinoGenerico));
+                window.location.href = 'execucao-treino.html';
+            }
+        }
+
+        // 6. CARREGA A ROTINA NA TELA PRINCIPAL (DASHBOARD)
+       function carregarTreinoDeHoje() {
+    const rotinaSalva = JSON.parse(localStorage.getItem('minhaRotina'));
+    const containerVazio = document.getElementById('estado-vazio-rotina');
+    const containerTreino = document.getElementById('treino-do-dia');
+    const hojeIndex = new Date().getDay();
+    const jaConcluido = localStorage.getItem(`treino-status-${hojeIndex}`) === 'concluido';
+
+    if (!rotinaSalva || Object.keys(rotinaSalva).length === 0) {
+        containerVazio.style.display = 'block';
+        containerTreino.classList.add('hidden');
+        return;
+    }
+
+    let treinosHoje = rotinaSalva[hojeIndex];
+    if (typeof treinosHoje === 'string') treinosHoje = [treinosHoje];
+
+    if (!treinosHoje || treinosHoje.length === 0) {
+        containerVazio.style.display = 'block';
+        containerTreino.classList.add('hidden');
+        return;
+    }
+
+    containerVazio.style.display = 'none';
+    containerTreino.classList.remove('hidden');
+
+    if (treinosHoje.includes('Descanso')) {
+        containerTreino.innerHTML = `
+            <div class="text-center py-4">
+                <span class="material-symbols-outlined text-5xl text-secondary-fixed-dim mb-2">hotel</span>
+                <h3 class="text-white font-bold text-xl italic uppercase">Dia de Descanso</h3>
+            </div>`;
+    } else {
+        let htmlAtividades = '';
+
+        treinosHoje.forEach(atividade => {
+    const dataHoje = new Date().toISOString().split('T')[0];
+    // Verifica se existe o check para ESTA data e ESTE treino
+    const jaConcluido = localStorage.getItem(`check-${dataHoje}-${atividade}`) === 'concluido';
+    const nomeSeguro = atividade.replace(/'/g, "\\'");
+
+    if (jaConcluido) {
+        // Visual de treino riscado
+        htmlAtividades += `
+            <div class="flex justify-between items-center bg-[#1c1b1b] p-4 rounded-xl border border-primary-fixed/20 mb-3 opacity-60">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary-fixed text-[24px]">task_alt</span>
+                    <h2 class="font-headline-md text-xl text-white italic uppercase line-through">${atividade}</h2>
+                </div>
+            </div>`;
+    } else {
+        // Visual de treino disponível
+        htmlAtividades += `
+            <div class="flex justify-between items-center bg-[#1c1b1b] p-4 rounded-xl border border-white/5 mb-3">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[24px]">fitness_center</span>
+                    <h2 class="font-headline-md text-xl text-white italic uppercase">${atividade}</h2>
+                </div>
+                <button onclick="iniciarTreinoPeloNome('${nomeSeguro}')" class="border border-primary-fixed text-primary-fixed p-2 rounded-lg">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                </button>
+            </div>`;
+    }
+});
+
+        containerTreino.innerHTML = `
+            <div class="text-left w-full">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-label-caps text-label-caps bg-primary-fixed/10 text-primary-fixed px-2 py-1 rounded">HOJE</span>
+                </div>
+                ${htmlAtividades}
+            </div>`;
+    }
+}
+
+        function marcarTreino(dia) {
+            const circle = document.getElementById(`circle-${dia}`);
+            circle.className = "w-8 h-8 rounded-full bg-primary-fixed ..."; // Estilo de check
+            circle.innerHTML = `<span class="material-symbols-outlined ...">check</span>`;
+
+            // Salva localmente no navegador
+            localStorage.setItem(`treino-${dia}`, 'true');
+        }
+
+        // Ao carregar a página, verifica o que está salvo
+        window.onload = () => {
+            for (let i = 0; i <= 6; i++) {
+                if (localStorage.getItem(`treino-${i}`) === 'true') {
+                    // Re-aplica o estilo de check
+                }
+            }
+        }
+
+        // 7. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarTreinoDeHoje();
+            const nomeSalvo = localStorage.getItem('nomeUsuario');
+            if (nomeSalvo) {
+                const primeiroNome = nomeSalvo.split(' ')[0].toUpperCase();
+                document.getElementById('nome-usuario-dashboard').innerText = primeiroNome;
+            }
+        });
+
+
+        function atualizarCoresSemanais() {
+            const hoje = new Date();
+            const diaAtual = hoje.getDay(); // 0-6
+
+            for (let i = 0; i <= 6; i++) {
+                const circle = document.getElementById(`circle-${i}`);
+                if (!circle) continue;
+
+                // Recupera o status salvo no localStorage (ou Firebase)
+                const status = localStorage.getItem(`treino-status-${i}`);
+
+                if (status === 'concluido') {
+                    // VERDE (Treino Feito)
+                    circle.className = "w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center shadow-[0_0_10px_rgba(195,244,0,0.3)]";
+                    circle.innerHTML = `<span class="material-symbols-outlined text-black text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>`;
+                }
+                else if (i < diaAtual && status !== 'concluido') {
+                    // VERMELHO (Dia passado e não treinado)
+                    circle.className = "w-9 h-9 rounded-full bg-error-container/20 border border-error/50 flex items-center justify-center";
+                    circle.innerHTML = `<span class="material-symbols-outlined text-error text-[18px]">close</span>`;
+                }
+                else {
+                    // NEUTRO (Dia futuro ou sem status)
+                    circle.className = "w-9 h-9 rounded-full border border-outline/30 flex items-center justify-center";
+                    circle.innerHTML = "";
+                }
+            }
+        }
+
+        // Chame essa função no seu DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarTreinoDeHoje();
+            atualizarCoresSemanais(); // <-- Adicione isso aqui
+        });
+
+
+
+        function renderizarAtividadeSemanal(historicoTreinos) {
+            const hojeIndex = new Date().getDay(); // 0 = Domingo, 1 = Segunda...
+
+            for (let i = 0; i <= 6; i++) {
+                const circle = document.getElementById(`circle-${i}`);
+                if (!circle) continue;
+
+                // Verifica se o dia i já passou ou é hoje
+                if (i <= hojeIndex) {
+                    // AQUI VOCÊ DEVE MUDAR A LÓGICA CONFORME O QUE ESTÁ NO SEU FIREBASE
+                    // Exemplo: se o treino foi feito, fica verde. Se não, fica vermelho.
+                    const treinouNoDia = historicoTreinos.some(t => new Date(t.data).getDay() === i);
+
+                    if (treinouNoDia) {
+                        // VERDE (Concluído)
+                        circle.className = "w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center";
+                        circle.innerHTML = `<span class="material-symbols-outlined text-black text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>`;
+                    } else {
+                        // VERMELHO (Falhou / Não treinou)
+                        circle.className = "w-9 h-9 rounded-full bg-error-container/30 border border-error flex items-center justify-center";
+                        circle.innerHTML = `<span class="material-symbols-outlined text-error text-[18px]">close</span>`;
+                    }
+                } else {
+                    // CINZA/NEUTRO (Futuro)
+                    circle.className = "w-9 h-9 rounded-full border border-outline/30 flex items-center justify-center";
+                    circle.innerHTML = "";
+                }
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

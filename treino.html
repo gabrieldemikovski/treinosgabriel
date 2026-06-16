@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Meus Treinos - Peak Performance</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#474746",
+            "tertiary-container": "#9cf0ff",
+            "secondary-fixed": "#e5e2e1",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#00daf3",
+            "surface-container": "#201f1f",
+            "primary-fixed": "#ccf200",
+            "on-primary": "#2b3400",
+            "surface-bright": "#393939",
+            "on-error": "#690005",
+            "on-tertiary-fixed-variant": "#004f58",
+            "surface-container-low": "#1c1b1b",
+            "secondary": "#c8c6c5",
+            "inverse-on-surface": "#313030",
+            "secondary-fixed-dim": "#c8c6c5",
+            "on-surface": "#e5e2e1",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary": "#303030",
+            "on-tertiary-container": "#006f7c",
+            "surface-dim": "#131313",
+            "outline-variant": "#454932",
+            "on-primary-fixed-variant": "#3f4c00",
+            "inverse-primary": "#546500",
+            "surface-tint": "#b3d400",
+            "surface-container-highest": "#353534",
+            "secondary-container": "#474746",
+            "on-surface-variant": "#c5c9ac",
+            "on-primary-container": "#5a6c00",
+            "tertiary": "#ffffff",
+            "on-secondary-container": "#b7b5b4",
+            "tertiary-fixed": "#9cf0ff",
+            "surface-variant": "#353534",
+            "outline": "#8f9378",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#001f24",
+            "error": "#ffb4ab",
+            "surface": "#131313",
+            "surface-container-high": "#2a2a2a",
+            "primary": "#ffffff",
+            "on-tertiary": "#00363d",
+            "background": "#131313",
+            "primary-container": "#ccf200",
+            "primary-fixed-dim": "#b3d400",
+            "on-secondary-fixed": "#1b1c1c",
+            "error-container": "#93000a",
+            "on-primary-fixed": "#181e00",
+            "surface-container-lowest": "#0e0e0e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1rem",
+            "container-padding-mobile": "1.25rem",
+            "stack-sm": "0.5rem",
+            "stack-md": "1rem",
+            "stack-lg": "2rem",
+            "container-padding-desktop": "2.5rem",
+            "base": "8px"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "headline-md": ["Archivo Narrow"],
+            "display-lg-mobile": ["Archivo Narrow"],
+            "display-lg": ["Archivo Narrow"],
+            "label-caps": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .active-glow {
+      box-shadow: 0 0 15px rgba(204, 242, 0, 0.15);
+    }
+
+    .bento-card {
+      background: #1E1E1E;
+      border: 1px solid #2C2C2E;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .bento-card:hover {
+      border-color: #ccf200;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen pb-32 font-body-md text-body-md">
+  <!-- TopAppBar -->
+  <header
+    class="w-full top-0 sticky z-50 bg-background dark:bg-background border-b border-outline-variant/30 flex justify-between items-center px-container-padding-mobile h-16">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant/50">
+        <img alt="Profile" class="w-full h-full object-cover"
+          data-alt="A close-up portrait of a determined athlete in a dark gym setting. The lighting is dramatic and high-contrast, featuring deep shadows and electric lime green highlights that rim the subject's silhouette. The overall aesthetic is professional, sleek, and high-intensity, consistent with a premium athletic performance brand."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcOA9hFMHHDUXRqaadHW5AwqXSkZgXEZFGVEaJWAFXhDy7T9rtFsBLSdoY4AHmv5iRaZ7MuYLSF_1HA7B-NZbOuaW5KqzvkdnGS2VZ7aviy99BNdKvYziY2scpOjl4O7sIxJMQrmIIHSx2wIoVg8kM1hthI5R4A3M-aHfSVvL6htG0C0PZOPfD4_QSYczHMQIuredr30S8gC-s5jErVDyZCAsHxnPOiRXLwumGQdTTO3w4cb_bO13o72hvoUXJCM__BWI8mZUWApnl" />
+      </div>
+      <h1 class="font-headline-md text-headline-md text-primary-fixed tracking-tight">Meus Treinos</h1>
+    </div>
+    <button
+      class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-150">
+      <span class="material-symbols-outlined text-primary-fixed">notifications</span>
+    </button>
+  </header>
+  <main class="px-container-padding-mobile space-y-8 mt-6">
+    <section>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-headline-md text-headline-md text-on-surface">Minhas Sequências</h2>
+
+        <a href="criar-treino.html"
+          class="flex items-center gap-1 bg-primary-fixed/10 text-primary-fixed px-3 py-1.5 rounded-lg hover:bg-primary-fixed hover:text-black transition-colors active:scale-95 duration-150">
+          <span class="material-symbols-outlined text-[18px]">add</span>
+          <span class="font-label-caps text-label-caps">CRIAR EXTRA</span>
+        </a>
+      </div>
+
+      <div id="container-treinos"
+        class="flex overflow-x-auto gap-4 -mx-container-padding-mobile px-container-padding-mobile pb-4 snap-x">
+      </div>
+    </section>
+
+    <div id="container-treinos"
+      class="flex overflow-x-auto gap-4 -mx-container-padding-mobile px-container-padding-mobile pb-4 snap-x">
+    </div>
+
+
+    <!-- Highlight Action Section (Create New) -->
+    <section
+      class="bento-card rounded-2xl p-6 bg-gradient-to-br from-[#1E1E1E] to-[#121212] border-primary-fixed/20 relative overflow-hidden group">
+      <div
+        class="absolute -right-10 -top-10 w-40 h-40 bg-primary-fixed/10 rounded-full blur-3xl group-hover:bg-primary-fixed/20 transition-all">
+      </div>
+      <div class="relative z-10">
+        <h3 class="font-headline-md text-headline-md text-white mb-2">Crie seu Próprio Plano</h3>
+        <p class="text-on-surface-variant font-body-md mb-6">Personalize exercícios, séries e tempos de descanso para
+          atingir seu objetivo único.</p>
+        <a href="criar-treino.html"
+          class="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-6 py-3 rounded-full font-label-caps text-label-caps hover:active-glow active:scale-95 transition-all">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+          CRIAR NOVO TREINO
+        </a>
+      </div>
+    </section>
+  </main>
+  <!-- FAB for quick access -->
+  <a href="criar-treino.html"
+    class="fixed right-6 bottom-28 w-14 h-14 bg-primary-fixed text-on-primary-fixed rounded-full shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-transform">
+    <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">add</span>
+  </a>
+
+
+ <nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+  <script>
+    // Micro-interação para os cards
+    document.querySelectorAll('.bento-card').forEach(card => {
+      card.addEventListener('touchstart', () => {
+        card.style.transform = 'scale(0.98)';
+      });
+      card.addEventListener('touchend', () => {
+        card.style.transform = 'scale(1)';
+      });
+    });
+
+    // Carrega os treinos ao iniciar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      renderizarTreinos();
+    });
+
+    function renderizarTreinos() {
+      const listaTreinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+      const container = document.getElementById('container-treinos');
+      if (!container) return;
+      container.innerHTML = ''; // Limpa antes de renderizar
+
+      listaTreinos.forEach((treino, index) => {
+        const card = document.createElement('div');
+        card.id = `treino-dinamico-${index}`;
+        card.className = "snap-start min-w-[280px] bento-card rounded-xl overflow-hidden relative flex flex-col justify-between p-5 bg-surface-container active:scale-95 duration-150";
+
+        const isExtra = treino.tipo === 'Extra';
+        const corEtiqueta = isExtra ? 'text-secondary-fixed-dim bg-secondary-fixed-dim/10' : 'text-primary-fixed bg-black/40';
+        const textoEtiqueta = isExtra ? 'EXTRA' : 'FIXO';
+
+        card.innerHTML = `
+        <div>
+            <span class="font-label-caps text-label-caps ${corEtiqueta} px-2 py-1 rounded w-fit mb-2 block">${textoEtiqueta}</span>
+            
+            <h3 class="font-headline-md text-headline-md text-white mb-2">${treino.nome || 'Treino'}</h3>
+            <div class="flex gap-4 mt-2 text-on-surface-variant">
+                <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">exercise</span>
+                    <span class="font-label-caps text-label-caps">${treino.exercicios ? treino.exercicios.length : 0} EXERC.</span>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="iniciarTreino(${index})" class="w-full mt-4 bg-primary-fixed text-[#161e00] font-bold py-2 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+            <span class="material-symbols-outlined">play_arrow</span> INICIAR
+        </button>
+        
+        <div class="flex gap-2 mt-2 relative z-20">
+            <button onclick="editarTreino(${index})" class="flex-1 flex items-center justify-center gap-1 bg-surface-variant text-white py-2 rounded-lg hover:bg-white/10 transition-colors">
+                <span class="material-symbols-outlined text-[18px]">edit</span>
+            </button>
+            <button onclick="excluirTreino(${index})" class="flex-1 flex items-center justify-center gap-1 bg-error/10 text-error py-2 rounded-lg hover:bg-error hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+            </button>
+        </div>
+    `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function excluirTreino(index) {
+      const confirmacao = confirm('Tem certeza que deseja excluir este treino?');
+
+      if (confirmacao) {
+        let treinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+        treinos.splice(index, 1); // Remove o item do array
+        localStorage.setItem('meusTreinos', JSON.stringify(treinos)); // Atualiza o localStorage
+
+        const cardElement = document.getElementById(`treino-dinamico-${index}`);
+        if (cardElement) {
+          cardElement.remove();
+        }
+      }
+    }
+
+    function editarTreino(index) {
+      window.location.href = `criar-treino.html?edit=${index}`;
+    }
+
+    function iniciarTreino(index) {
+      const treinos = JSON.parse(localStorage.getItem('meusTreinos')) || [];
+      const treinoSelecionado = treinos[index];
+
+      localStorage.setItem('treinoEmExecucao', JSON.stringify(treinoSelecionado));
+      window.location.href = 'execucao-treino.html';
+    }
+
+  </script>
+</body>
+
+</html>

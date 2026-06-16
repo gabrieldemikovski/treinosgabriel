@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Configurar Simulado TAF | FITFLOW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed-dim": "#abd600",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#002022",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#8e9379",
+                        "secondary-container": "#00eefc",
+                        "surface-tint": "#abd600",
+                        "on-primary": "#283500",
+                        "primary-fixed": "#c3f400",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-primary-container": "#556d00",
+                        "surface-dim": "#131313",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "background": "#131313",
+                        "on-tertiary": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#d3fbff",
+                        "primary": "#ffffff",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary-container": "#00686f",
+                        "inverse-primary": "#506600",
+                        "primary-container": "#c3f400",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary": "#00363a",
+                        "outline-variant": "#444933",
+                        "tertiary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#e5e2e1",
+                        "tertiary-container": "#e5e2e1",
+                        "on-primary-fixed-variant": "#3c4d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px",
+                        "stack-gap-sm": "0.5rem",
+                        "stack-gap-lg": "2rem",
+                        "container-padding-mobile": "1.25rem",
+                        "stack-gap-md": "1rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "stat-xl": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"],
+                        "display-lg-mobile": ["Archivo Narrow"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "stat-xl": ["40px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { background-color: #131313; color: #e5e2e1; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden pb-32">
+
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-surface-variant fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 h-16">
+    <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary-fixed">analytics</span>
+        <h1 class="text-headline-md font-headline-md font-bold text-primary-fixed uppercase italic">Configurar Simulado TAF</h1>
+    </div>
+    <button onclick="window.location.href='index.html'" class="text-xs text-primary-fixed font-bold border border-primary-fixed/20 px-3 py-1.5 rounded-lg bg-primary-fixed/5 active:scale-95 transition-all">VOLTAR</button>
+</header>
+
+<main class="mt-20 px-5 max-w-2xl mx-auto space-y-6">
+    <section class="glass-card p-5 rounded-xl space-y-4 border border-primary-fixed/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1">
+                <label class="text-[10px] font-label-caps text-on-surface-variant uppercase tracking-widest">Nome do Edital / Concurso</label>
+                <input id="edital-name-input" class="w-full bg-surface-container-low border-b-2 border-surface-variant focus:border-primary-fixed outline-none py-3 px-3 text-white font-bold text-sm rounded-t placeholder:text-on-surface-variant/30" placeholder="Ex: PMSC Soldado" type="text"/>
+            </div>
+            <div id="container-nota-corte-global" class="space-y-1 transition-all duration-300">
+                <label class="text-[10px] font-label-caps text-primary-fixed uppercase tracking-widest font-bold">Nota de Corte do Edital (Pontos)</label>
+                <input id="meta-ref" class="w-full bg-surface-container-low border-b-2 border-primary-fixed outline-none py-3 px-3 text-primary-fixed font-black text-sm rounded-t placeholder:text-on-surface-variant/30" placeholder="Ex: 200" type="number"/>
+            </div>
+        </div>
+    </section>
+
+    <div class="glass-card p-1 rounded-lg flex text-xs bg-black/20">
+        <button type="button" id="global-btn-edital" class="flex-1 py-3 font-label-caps text-[11px] rounded bg-primary-container text-on-primary-container font-bold shadow transition-all" onclick="setGlobalMode('edital')">
+            PONTUAÇÃO POR EDITAL
+        </button>
+        <button type="button" id="global-btn-minimo" class="flex-1 py-3 font-label-caps text-[11px] rounded text-on-surface-variant transition-all" onclick="setGlobalMode('minimo')">
+            MÍNIMO EXIGIDO
+        </button>
+    </div>
+
+    <section class="space-y-4 mt-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-headline-md text-sm text-white uppercase tracking-wider font-bold italic">Exercícios da Grade de Testes</h3>
+        </div>
+        
+        <div id="container-exercicios-dinamicos" class="space-y-4"></div>
+        
+        <button type="button" onclick="adicionarNovoExercicioCard()" class="w-full mt-4 border-2 border-dashed border-primary-fixed/50 text-primary-fixed hover:bg-primary-fixed/10 hover:border-primary-fixed active:scale-95 text-xs font-label-caps font-bold tracking-wider py-4 rounded-xl flex items-center justify-center gap-2 transition-all">
+            <span class="material-symbols-outlined text-lg">add_circle</span> ADICIONAR NOVO EXERCÍCIO
+        </button>
+    </section>
+
+    <div class="pt-4">
+        <button type="button" onclick="saveSimulation(event)" class="w-full bg-primary-fixed text-on-primary-fixed font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all text-sm tracking-widest uppercase font-mono">
+            <span class="material-symbols-outlined">save</span> SALVAR CONFIGURAÇÃO DO EDITAL
+        </button>
+    </div>
+
+    <section class="space-y-4 pt-4">
+        <div class="flex justify-between items-end">
+            <h3 class="font-headline-md text-headline-md text-white italic uppercase tracking-tight">Protocolos Cadastrados</h3>
+            <span id="simulation-counter" class="text-label-caps font-label-caps text-primary-fixed">0 SALVOS</span>
+        </div>
+        <div id="container-simulados-lista" class="space-y-4"></div>
+    </section>
+</main>
+
+<nav id="bottom-nav" class="fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-primary-fixed/20 h-20 px-4 pb-safe flex justify-around items-center rounded-t-xl shadow-[0_-4px_20px_rgba(195,244,0,0.15)]">
+
+    <a href="index.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="home">home</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Início</span>
+    </a>
+
+    <a href="treino.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Treino</span>
+    </a>
+
+    <a href="simuladotaf.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Simulado</span>
+    </a>
+
+    <a href="historico.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="history">history</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Histórico</span>
+    </a>
+
+    <a href="perfil.html" class="nav-btn flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+      <span class="font-label-caps text-label-caps mt-1 uppercase">Perfil</span>
+    </a>
+
+</nav>
+
+<script>
+  // 1. Identifica em qual página o usuário está no momento
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // 2. Define as classes visuais (Ativo = Aceso | Inativo = Apagado)
+  const classesAtivo = ['bg-primary-container', 'text-on-primary-container', 'rounded-xl', 'px-4', 'py-1', 'shadow-[0_0_15px_rgba(195,244,0,0.3)]', 'scale-90', 'duration-200'];
+  const classesInativo = ['text-on-surface-variant', 'opacity-70', 'hover:opacity-100', 'transition-opacity'];
+
+  // 3. Percorre todos os botões do menu
+  document.querySelectorAll('#bottom-nav .nav-btn').forEach(btn => {
+    const linkDoBotao = btn.getAttribute('href');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    
+    // Regra especial: se a página tiver "simulado" no nome (ex: execução-simulado.html, resultado-simulado.html), mantém o botão "Simulado" aceso
+    const isSimuladoArea = linkDoBotao === 'simuladotaf.html' && paginaAtual.includes('simulado');
+
+    if (paginaAtual === linkDoBotao || isSimuladoArea) {
+      // Aplica o visual ATIVO
+      btn.classList.remove(...classesInativo);
+      btn.classList.add(...classesAtivo);
+      icone.style.fontVariationSettings = "'FILL' 1"; // Preenche o ícone
+    } else {
+      // Garante o visual INATIVO
+      btn.classList.remove(...classesAtivo);
+      btn.classList.add(...classesInativo);
+      icone.style.fontVariationSettings = "'FILL' 0"; // Esvazia o ícone
+    }
+  });
+</script>
+
+<script>
+    let exercicioContadorId = 0;
+    let modoGlobalAtivo = 'edital';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        adicionarNovoExercicioCard();
+        renderizarListaSimulados();
+
+        document.getElementById('global-btn-edital').addEventListener('click', () => setGlobalMode('edital'));
+        document.getElementById('global-btn-minimo').addEventListener('click', () => setGlobalMode('minimo'));
+    });
+
+    window.setGlobalMode = function(mode) {
+        modoGlobalAtivo = mode;
+        const btnEdital = document.getElementById('global-btn-edital');
+        const btnMinimo = document.getElementById('global-btn-minimo');
+        const containerNotaCorte = document.getElementById('container-nota-corte-global');
+
+        if (mode === 'edital') {
+            btnEdital.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow');
+            btnMinimo.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow');
+            containerNotaCorte.style.display = 'block';
+        } else {
+            btnMinimo.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow');
+            btnEdital.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow');
+            containerNotaCorte.style.display = 'none';
+        }
+
+        document.querySelectorAll('.exercise-node').forEach(node => {
+            renderSubInputsLayout(node.getAttribute('data-id'), mode);
+        });
+    };
+
+    window.adicionarNovoExercicioCard = function() {
+        exercicioContadorId++;
+        const container = document.getElementById('container-exercicios-dinamicos');
+        const cardHtml = document.createElement('div');
+        cardHtml.className = "glass-card p-5 rounded-xl space-y-4 border border-white/5 relative exercise-node";
+        cardHtml.setAttribute('data-id', exercicioContadorId);
+        
+        cardHtml.innerHTML = `
+            <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                <span class="text-[11px] font-label-caps text-[#00dbe9] uppercase tracking-widest font-bold">Exercício</span>
+                <button type="button" onclick="this.closest('.exercise-node').remove()" class="text-on-surface-variant hover:text-error flex items-center p-1">
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="space-y-1">
+                    <label class="text-[10px] font-label-caps text-on-surface-variant/70 uppercase tracking-wide">Nome</label>
+                    <input type="text" placeholder="Ex: Barra" class="ex-name-input w-full bg-surface-container border-b border-surface-variant focus:border-primary-fixed outline-none py-2 px-3 text-white text-sm rounded">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-label-caps text-on-surface-variant/70 uppercase tracking-wide">Métrica</label>
+                    <input type="text" placeholder="Ex: Reps" class="ex-metric-input w-full bg-surface-container border-b border-surface-variant focus:border-primary-fixed outline-none py-2 px-3 text-white text-sm rounded" value="Repetições">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-label-caps text-on-surface-variant/70 uppercase tracking-wide">Lógica</label>
+                    <select class="ex-logic-input w-full bg-surface-container border-b border-surface-variant focus:border-primary-fixed outline-none py-2 px-3 text-white text-sm rounded appearance-none">
+                        <option value="maior">Maior é melhor (Reps/Metros)</option>
+                        <option value="menor">Menor é melhor (Tempo)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="sub-inputs-dinamicos-area pt-1"></div>
+        `;
+        container.appendChild(cardHtml);
+        renderSubInputsLayout(exercicioContadorId, modoGlobalAtivo); 
+    };
+
+    function renderSubInputsLayout(nodeId, modo) {
+        const node = document.querySelector(`[data-id="${nodeId}"]`);
+        if (!node) return;
+        node.setAttribute('data-mode', modo);
+        const subArea = node.querySelector('.sub-inputs-dinamicos-area');
+
+        if (modo === 'edital') {
+            subArea.innerHTML = `
+                <div class="scoring-box space-y-2">
+                    <label class="text-[10px] font-label-caps text-on-surface-variant/60 uppercase block">Faixas de Pontuação</label>
+                    <div class="rows-container space-y-2"></div>
+                    <button type="button" onclick="addScoringRowToNode(${nodeId})" class="mt-2 border border-dashed border-outline-variant text-on-surface-variant hover:text-primary-fixed py-1.5 px-3 rounded flex items-center gap-1 text-[10px] font-mono uppercase">
+                        <span class="material-symbols-outlined text-xs">add</span> Add Faixa
+                    </button>
+                </div>`;
+            addScoringRowToNode(nodeId);
+        } else {
+            subArea.innerHTML = `
+                <div class="space-y-1">
+                    <label class="text-[10px] font-label-caps text-on-surface-variant/60 uppercase">Mínimo para Aprovação</label>
+                    <input type="number" step="0.01" class="ex-min-req-input w-full bg-surface-container border-b border-surface-variant focus:border-primary-fixed outline-none py-2 px-3 text-white text-sm rounded">
+                </div>`;
+        }
+    }
+
+    function addScoringRowToNode(nodeId) {
+        const nodeContainer = document.querySelector(`[data-id="${nodeId}"] .rows-container`);
+        if (!nodeContainer) return;
+        const divRow = document.createElement('div');
+        divRow.className = "grid grid-cols-12 gap-2 items-center score-row-item";
+        divRow.innerHTML = `
+            <div class="col-span-6"><input class="score-marca w-full bg-surface-container-low border border-white/5 py-1 px-2 text-white text-xs rounded" placeholder="Marca" type="number" step="0.01"></div>
+            <div class="col-span-4"><input class="score-pontos w-full bg-surface-container-low border border-white/5 py-1 px-2 text-white text-xs rounded" placeholder="Pts" type="number"></div>
+            <div class="col-span-2 flex justify-center"><button type="button" onclick="this.parentElement.parentElement.remove()" class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined text-[16px]">close</span></button></div>
+        `;
+        nodeContainer.appendChild(divRow);
+    }
+
+   function saveSimulation(event) {
+    if (event) event.preventDefault();
+    const editalName = document.getElementById('edital-name-input').value.trim();
+    let notaCorteGlobal = parseInt(document.getElementById('meta-ref').value) || 0;
+
+    if (!editalName) { alert("Nome do Edital obrigatório!"); return; }
+    
+    const listaExerciciosProcessada = [];
+ // Dentro do forEach da saveSimulation:
+    document.querySelectorAll('.exercise-node').forEach(node => {
+        const nomeEx = node.querySelector('.ex-name-input').value.trim();
+        const metrica = node.querySelector('.ex-metric-input').value.trim();
+        const logica = node.querySelector('.ex-logic-input').value; // PEGA A NOVA LÓGICA AQUI
+        
+        if(!nomeEx) return;
+        
+        const modoCalculo = node.getAttribute('data-mode');
+        let tabelaPontos = [];
+        let minimo = 0;
+
+        if (modoCalculo === 'edital') {
+            node.querySelectorAll('.score-row-item').forEach(row => {
+                const m = parseFloat(row.querySelector('.score-marca').value);
+                const p = parseInt(row.querySelector('.score-pontos').value);
+                if(!isNaN(m)) tabelaPontos.push({ marca: m, pontos: p });
+            });
+        } else {
+            minimo = parseFloat(node.querySelector('.ex-min-req-input')?.value) || 0;
+        }
+
+        // SALVA A LÓGICA JUNTO COM O RESTO
+        listaExerciciosProcessada.push({ nome: nomeEx, metrica: metrica, modo: modoCalculo, logica: logica, minimo, tabelaPontos });
+    });
+
+    const savedList = JSON.parse(localStorage.getItem('fitflow_saved_simulations')) || [];
+    savedList.push({ nomeEdital: editalName, corte: notaCorteGlobal, exercicios: listaExerciciosProcessada });
+    localStorage.setItem('fitflow_saved_simulations', JSON.stringify(savedList));
+
+    alert("Simulado salvo com sucesso!");
+    renderizarListaSimulados();
+}
+
+    function renderizarListaSimulados() {
+        const savedList = JSON.parse(localStorage.getItem('fitflow_saved_simulations')) || [];
+        const container = document.getElementById('container-simulados-lista');
+        container.innerHTML = savedList.map((sim, idx) => `
+            <div class="glass-card p-4 rounded-xl border-l-4 border-primary-fixed">
+                <h4 class="font-bold text-white">${sim.nomeEdital}</h4>
+                <button onclick="carregarEIniciarSimulado(${idx})" class="w-full mt-2 bg-primary-fixed text-black py-2 rounded text-xs font-bold uppercase">Executar</button>
+            </div>
+        `).join('');
+    }
+
+    window.carregarEIniciarSimulado = (index) => {
+        const sim = JSON.parse(localStorage.getItem('fitflow_saved_simulations'))[index];
+        localStorage.setItem('fitflow_active_sim', JSON.stringify(sim));
+        window.location.href = 'execução-simulado.html';
+    };
+</script>
+
+</body>
+</html>
